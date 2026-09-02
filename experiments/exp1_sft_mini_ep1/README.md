@@ -21,3 +21,8 @@
 ## 备注
 - loss_curve.csv 是 (step, loss) 原始序列, 可本地画曲线
 - 全参 SFT 与 LoRA (train_lora.py) 的对比留作后续实验
+
+## 定性对比（同一 8 问，SFT 前后）
+- probe_before_pretrain.txt : pretrain 底座（SFT 前，无指令模板，直接续写）
+- probe_after_sft.txt       : sft_mini_ep1（全参 SFT 1 epoch 后）
+- 评测脚本: /root/autodl-tmp/eval_probe.py（固定每问 seed=1000+i，top_p=0.95 temp=0.85）
