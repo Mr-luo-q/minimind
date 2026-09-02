@@ -2,23 +2,23 @@
 
 ## 今日实验总览
 
-| exp | 方法 | 数据 | epochs | lr | 产物 |
-|---|---|---|---|---|---|
-| exp1 | 全参 SFT (train_full_sft.py) | sft_t2t_mini | 1 | 1e-5 | out/sft_mini_ep1_768.pth |
-| exp2 | 全参 SFT | sft_t2t_mini | 2 | 1e-5 | out/sft_mini_ep2_768.pth |
-| exp3 | LoRA (train_lora.py, from pretrain) | sft_t2t_mini | 1 | 1e-4 | out/lora_sft_ep1_768.pth (+pretrain) |
+| exp | 方法 | 数据 | 轮数 | lr | loss末值 | loss最小 | 8问对比 |
+|---|---|---|---|---|---|---|---|
+| exp1 | 全参SFT | sft_t2t_mini | 1 | 1e-5 | 1.5287 | 1.2895 | probe_before/after |
+| exp2 | 全参SFT | sft_t2t_mini | 2 | 1e-5 | 1.6683 | 1.0141 | probe_after_sft_ep2 |
+| exp3 | LoRA | sft_t2t_mini | 1 | 1e-4 | 1.6561 | 1.5412 | probe_lora |
 
-## loss 摘要
+## 观察要点
 
-| exp | loss 末值 | loss 最小值 |
-|---|---|---|
-| exp1_sft_mini_ep1 | loss 最小值: 1.2895 loss 整体从 ~2.0 区间下降到 ~1.5-1.6 区间 (SFT 正常水平, 该模型官方 full_sft 相近) |
-| exp2_sft_mini_ep2 | |
-| exp3_lora_sft_ep1 | |
+- exp1 vs exp2: 看多训 1 轮（epochs 2）loss 是否继续下降、末值差异
+- exp1 vs exp3: 全参(63.9M 全训) vs LoRA(仅 adapter) 在同一数据 1 epoch 的 loss 形态与参数量差异（exp3 日志含 LoRA 参数量占比）
+- 每目录 probe_*.txt 为同一 8 问的模型回答（pretrain=SFT前底座；after_sft=全参SFT后；lora=LoRA版）
 
-## 定性对比（8 问 probe）
+## 权重说明
 
-每个 exp 目录下 probe_*.txt：pretrain=SFT前底座；after_sft=全参SFT后；lora=LoRA版。
-逐问对比可见：SFT 让模型学会遵循指令格式；pretrain 只会无格式续写。
-
-> 权重 *.pth 不入库（>100MB），保留在实例数据盘 /root/autodl-tmp/minimind/out/
+*.pth 不入库（>100MB），保留在实例 /root/autodl-tmp/minimind/out/
+| 文件 | 说明 |
+|---|---|
+| sft_mini_ep1_768.pth | exp1 全参 SFT 1 epoch |
+| sft_mini_ep2_768.pth | exp2 全参 SFT 2 epochs |
+| lora_sft_ep1_768.pth (797KB) | exp3 LoRA adapter（需配 pretrain_768.pth 使用）|
