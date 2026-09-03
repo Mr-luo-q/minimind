@@ -1,0 +1,20 @@
+# E2: Qwen2.5-1.5B-Instruct 全参微调 (5090 32GB: grad checkpointing + 小 batch)
+model_name_or_path: /root/autodl-tmp/qwen_sft/models/Qwen2.5-1.5B-Instruct
+template: qwen
+stage: sft
+finetuning_type: full
+dataset: sft_10k
+dataset_dir: /root/autodl-tmp/qwen_sft/data
+cutoff_len: 1024
+learning_rate: 1.0e-5
+num_train_epochs: 1.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.05
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 16
+gradient_checkpointing: true
+bf16: true
+output_dir: /root/autodl-tmp/qwen_sft/out/e2_qwen15b_full
+logging_steps: 20
+save_steps: 500
+plot_loss: true

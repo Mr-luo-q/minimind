@@ -1,0 +1,8 @@
+# 合并 E3 LoRA adapter -> 完整权重
+model_name_or_path: /root/autodl-tmp/qwen_sft/models/Qwen2.5-1.5B-Instruct
+adapter_name_or_path: /root/autodl-tmp/qwen_sft/out/e3_qwen15b_lora
+template: qwen
+finetuning_type: lora
+export_dir: /root/autodl-tmp/qwen_sft/out/merged_e3_qwen15b_lora
+export_size: 2
+export_legacy_format: false

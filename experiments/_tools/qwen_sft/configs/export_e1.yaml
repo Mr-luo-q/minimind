@@ -1,0 +1,8 @@
+# 合并 E1 LoRA adapter -> 完整权重
+model_name_or_path: /root/autodl-tmp/qwen_sft/models/Qwen3-4B
+adapter_name_or_path: /root/autodl-tmp/qwen_sft/out/e1_qwen3-4b_lora
+template: qwen
+finetuning_type: lora
+export_dir: /root/autodl-tmp/qwen_sft/out/merged_e1_qwen3-4b_lora
+export_size: 2
+export_legacy_format: false
