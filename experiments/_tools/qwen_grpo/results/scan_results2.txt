@@ -1,0 +1,6 @@
+s1 b=4 ng=4 comp=256 => PEAK_VRAM_MB=24207
+s2 b=4 ng=8 comp=256 => PEAK_VRAM_MB=25011
+s3 b=4 ng=8 comp=512 => PEAK_VRAM_MB=28953
+s4 b=8 ng=8 comp=512 => PEAK_VRAM_MB=35793
+s5 b=8 ng=16 comp=512 => PEAK_VRAM_MB=43771
+s6 b=8 ng=16 comp=1024 => PEAK_VRAM_MB=91059

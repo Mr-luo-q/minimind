@@ -1,0 +1,18 @@
+s1 batch=4 ngen=4 comp=256 => peak=MB step_time=e
+e
+42.5930293481797s rc=0
+s2 batch=4 ngen=8 comp=256 => peak=MB step_time=e
+e
+24.074897391721606s rc=0
+s3 batch=4 ngen=8 comp=512 => peak=MB step_time=e
+e
+44.21031476929784s rc=0
+s4 batch=8 ngen=8 comp=512 => peak=MB step_time=e
+e
+88.21043075621128s rc=0
+s5 batch=8 ngen=16 comp=512 => peak=MB step_time=e
+e
+54.621292259544134s rc=0
+s6 batch=8 ngen=16 comp=1024 => peak=MB step_time=e
+e
+136.2703848220408s rc=0
