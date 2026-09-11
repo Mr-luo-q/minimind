@@ -1,0 +1,100 @@
+{"tag": "qwen3-4b_grpo", "i": 0, "ok": true, "ref": "18", "pred": "18", "question": "Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning an"}
+{"tag": "qwen3-4b_grpo", "i": 1, "ok": true, "ref": "3", "pred": "3", "question": "A robe takes 2 bolts of blue fiber and half that much white fiber.  How many bol"}
+{"tag": "qwen3-4b_grpo", "i": 2, "ok": true, "ref": "70000", "pred": "70000", "question": "Josh decides to try flipping a house.  He buys a house for $80,000 and then puts"}
+{"tag": "qwen3-4b_grpo", "i": 3, "ok": true, "ref": "540", "pred": "540", "question": "James decides to run 3 sprints 3 times a week.  He runs 60 meters each sprint.  "}
+{"tag": "qwen3-4b_grpo", "i": 4, "ok": true, "ref": "20", "pred": "20", "question": "Every day, Wendi feeds each of her chickens three cups of mixed chicken feed, co"}
+{"tag": "qwen3-4b_grpo", "i": 5, "ok": true, "ref": "64", "pred": "64", "question": "Kylar went to the store to buy glasses for his new apartment. One glass costs $5"}
+{"tag": "qwen3-4b_grpo", "i": 6, "ok": true, "ref": "260", "pred": "260", "question": "Toulouse has twice as many sheep as Charleston. Charleston has 4 times as many s"}
+{"tag": "qwen3-4b_grpo", "i": 7, "ok": true, "ref": "160", "pred": "160", "question": "Carla is downloading a 200 GB file. Normally she can download 2 GB/minute, but 4"}
+{"tag": "qwen3-4b_grpo", "i": 8, "ok": true, "ref": "45", "pred": "45", "question": "John drives for 3 hours at a speed of 60 mph and then turns around because he re"}
+{"tag": "qwen3-4b_grpo", "i": 9, "ok": true, "ref": "460", "pred": "460", "question": "Eliza's rate per hour for the first 40 hours she works each week is $10. She als"}
+{"tag": "qwen3-4b_grpo", "i": 10, "ok": true, "ref": "366", "pred": "366", "question": "A new program had 60 downloads in the first month. The number of downloads in th"}
+{"tag": "qwen3-4b_grpo", "i": 11, "ok": true, "ref": "694", "pred": "694", "question": "Toula went to the bakery and bought various types of pastries. She bought 3 doze"}
+{"tag": "qwen3-4b_grpo", "i": 12, "ok": false, "ref": "13", "pred": "12", "question": "Carlos is planting a lemon tree. The tree will cost $90 to plant. Each year it w"}
+{"tag": "qwen3-4b_grpo", "i": 13, "ok": true, "ref": "18", "pred": "18", "question": "Melanie is a door-to-door saleswoman. She sold a third of her vacuum cleaners at"}
+{"tag": "qwen3-4b_grpo", "i": 14, "ok": true, "ref": "60", "pred": "60", "question": "In a dance class of 20 students, 20% enrolled in contemporary dance, 25% of the "}
+{"tag": "qwen3-4b_grpo", "i": 15, "ok": true, "ref": "125", "pred": "125", "question": "A merchant wants to make a choice of purchase between 2 purchase plans: jewelry "}
+{"tag": "qwen3-4b_grpo", "i": 16, "ok": true, "ref": "230", "pred": "230", "question": "Two trains leave San Rafael at the same time. They begin traveling westward, bot"}
+{"tag": "qwen3-4b_grpo", "i": 17, "ok": true, "ref": "57500", "pred": "57500", "question": "Jill gets paid $20 per hour to teach and $30 to be a cheerleading coach. If she "}
+{"tag": "qwen3-4b_grpo", "i": 18, "ok": true, "ref": "7", "pred": "7", "question": "Claire makes a 3 egg omelet every morning for breakfast.  How many dozens of egg"}
+{"tag": "qwen3-4b_grpo", "i": 19, "ok": true, "ref": "6", "pred": "6", "question": "Marissa is hiking a 12-mile trail. She took 1 hour to walk the first 4 miles, th"}
+{"tag": "qwen3-4b_grpo", "i": 20, "ok": true, "ref": "15", "pred": "15", "question": "I have 10 liters of orange drink that are two-thirds water and I wish to add it "}
+{"tag": "qwen3-4b_grpo", "i": 21, "ok": false, "ref": "14", "pred": "23", "question": "Raymond and Samantha are cousins. Raymond was born 6 years before Samantha. Raym"}
+{"tag": "qwen3-4b_grpo", "i": 22, "ok": true, "ref": "7", "pred": "7", "question": "Billy sells DVDs. He has 8 customers on Tuesday. His first 3 customers buy one D"}
+{"tag": "qwen3-4b_grpo", "i": 23, "ok": true, "ref": "8", "pred": "8", "question": "A candle melts by 2 centimeters every hour that it burns. How many centimeters s"}
+{"tag": "qwen3-4b_grpo", "i": 24, "ok": true, "ref": "26", "pred": "26", "question": "Kyle bought last year's best-selling book for $19.50. This is with a 25% discoun"}
+{"tag": "qwen3-4b_grpo", "i": 25, "ok": true, "ref": "2", "pred": "2", "question": "Marie ordered one chicken meal that costs $12, 5 packs of milk that costs $3 eac"}
+{"tag": "qwen3-4b_grpo", "i": 26, "ok": true, "ref": "243", "pred": "243", "question": "Mishka bought 3 pairs of shorts, 3 pairs of pants, and 3 pairs of shoes. One pai"}
+{"tag": "qwen3-4b_grpo", "i": 27, "ok": true, "ref": "16", "pred": "16", "question": "Cynthia eats one serving of ice cream every night.  She buys cartons of ice crea"}
+{"tag": "qwen3-4b_grpo", "i": 28, "ok": true, "ref": "25", "pred": "25", "question": "Henry made two stops during his 60-mile bike trip. He first stopped after 20 mil"}
+{"tag": "qwen3-4b_grpo", "i": 29, "ok": true, "ref": "104", "pred": "104", "question": "Gloria is shoe shopping when she comes across a pair of boots that fit her shoe "}
+{"tag": "qwen3-4b_grpo", "i": 30, "ok": true, "ref": "109", "pred": "109", "question": "Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162"}
+{"tag": "qwen3-4b_grpo", "i": 31, "ok": false, "ref": "80", "pred": "93.33", "question": "Gunter is trying to count the jelly beans in a jar. He asks his friends how many"}
+{"tag": "qwen3-4b_grpo", "i": 32, "ok": true, "ref": "35", "pred": "35", "question": "John takes care of 10 dogs.  Each dog takes .5 hours a day to walk and take care"}
+{"tag": "qwen3-4b_grpo", "i": 33, "ok": true, "ref": "70", "pred": "70", "question": "Gretchen has 110 coins. There are 30 more gold coins than silver coins. How many"}
+{"tag": "qwen3-4b_grpo", "i": 34, "ok": true, "ref": "23", "pred": "23", "question": "Siobhan has 2 fewer jewels than Aaron. Aaron has 5 more jewels than half of Raym"}
+{"tag": "qwen3-4b_grpo", "i": 35, "ok": true, "ref": "9", "pred": "9", "question": "Mike plays ping pong for 40 minutes.  In the first 20 minutes, he scores 4 point"}
+{"tag": "qwen3-4b_grpo", "i": 36, "ok": true, "ref": "75", "pred": "75", "question": "Terry eats 2 yogurts a day.  They are currently on sale at 4 yogurts for $5.00. "}
+{"tag": "qwen3-4b_grpo", "i": 37, "ok": true, "ref": "2", "pred": "2", "question": "John plans to sell all his toys and use the money to buy video games. He has 13 "}
+{"tag": "qwen3-4b_grpo", "i": 38, "ok": true, "ref": "10", "pred": "10", "question": "John runs 60 miles a week. He runs 3 days a week.  He runs 3 hours the first day"}
+{"tag": "qwen3-4b_grpo", "i": 39, "ok": true, "ref": "18", "pred": "18", "question": "Dana can run at a rate of speed four times faster than she can walk, but she can"}
+{"tag": "qwen3-4b_grpo", "i": 40, "ok": true, "ref": "8", "pred": "8", "question": "Brandon's iPhone is four times as old as Ben's iPhone. Ben's iPhone is two times"}
+{"tag": "qwen3-4b_grpo", "i": 41, "ok": true, "ref": "200", "pred": "200", "question": "The great dragon, Perg, sat high atop mount Farbo, breathing fire upon anything "}
+{"tag": "qwen3-4b_grpo", "i": 42, "ok": true, "ref": "26", "pred": "26", "question": "Grandma Jones baked 5 apple pies for the fireman's luncheon.  She cut each pie i"}
+{"tag": "qwen3-4b_grpo", "i": 43, "ok": true, "ref": "48", "pred": "48", "question": "According to its nutritional info, a bag of chips has 250 calories per serving. "}
+{"tag": "qwen3-4b_grpo", "i": 44, "ok": true, "ref": "20", "pred": "20", "question": "Charlie wants to sell beeswax candles.  For every pound of beeswax, he can make "}
+{"tag": "qwen3-4b_grpo", "i": 45, "ok": false, "ref": "104", "pred": "44", "question": "Meredith is a freelance blogger who writes about health topics and submits to cl"}
+{"tag": "qwen3-4b_grpo", "i": 46, "ok": true, "ref": "163", "pred": "163", "question": "Candice put 80 post-it notes in her purse before she headed out to her job at th"}
+{"tag": "qwen3-4b_grpo", "i": 47, "ok": true, "ref": "800", "pred": "800", "question": "John buys twice as many red ties as blue ties.  The red ties cost 50% more than "}
+{"tag": "qwen3-4b_grpo", "i": 48, "ok": true, "ref": "8", "pred": "8", "question": "Tracy used a piece of wire 4 feet long to support tomato plants in the garden. T"}
+{"tag": "qwen3-4b_grpo", "i": 49, "ok": true, "ref": "30", "pred": "30", "question": "Richard lives in an apartment building with 15 floors. Each floor contains 8 uni"}
+{"tag": "qwen3-4b_grpo", "i": 50, "ok": true, "ref": "294", "pred": "294", "question": "Lloyd has an egg farm. His chickens produce 252 eggs per day and he sells them f"}
+{"tag": "qwen3-4b_grpo", "i": 51, "ok": true, "ref": "5", "pred": "5", "question": "Tom's ship can travel at 10 miles per hour.  He is sailing from 1 to 4 PM.  He t"}
+{"tag": "qwen3-4b_grpo", "i": 52, "ok": true, "ref": "15", "pred": "15", "question": "Uriah's book bag is getting too heavy for him. He needs to remove 15 pounds from"}
+{"tag": "qwen3-4b_grpo", "i": 53, "ok": true, "ref": "40", "pred": "40", "question": "A mechanic charges different rates to repair the tires of trucks and cars.  For "}
+{"tag": "qwen3-4b_grpo", "i": 54, "ok": true, "ref": "40", "pred": "40", "question": "The Doubtfire sisters are driving home with 7 kittens adopted from the local ani"}
+{"tag": "qwen3-4b_grpo", "i": 55, "ok": true, "ref": "14", "pred": "14", "question": "Jean has 30 lollipops. Jean eats 2 of the lollipops. With the remaining lollipop"}
+{"tag": "qwen3-4b_grpo", "i": 56, "ok": true, "ref": "3", "pred": "3", "question": "Peter plans to go to the movies this week. He always gets a ticket for $7 and po"}
+{"tag": "qwen3-4b_grpo", "i": 57, "ok": true, "ref": "83", "pred": "83", "question": "A wooden bridge can carry no more than 5000 pounds. A delivery truck filled with"}
+{"tag": "qwen3-4b_grpo", "i": 58, "ok": true, "ref": "57", "pred": "57", "question": "Stephen placed an online order for groceries.  His final bill came to $40.00.  B"}
+{"tag": "qwen3-4b_grpo", "i": 59, "ok": true, "ref": "187", "pred": "187", "question": "A raspberry bush has 6 clusters of 20 fruit each and 67 individual fruit scatter"}
+{"tag": "qwen3-4b_grpo", "i": 60, "ok": true, "ref": "17", "pred": "17", "question": "A basket contains 25 oranges among which 1 is bad, 20% are unripe, 2 are sour an"}
+{"tag": "qwen3-4b_grpo", "i": 61, "ok": true, "ref": "1430", "pred": "1430", "question": "Janet buys a brooch for her daughter.  She pays $500 for the material to make it"}
+{"tag": "qwen3-4b_grpo", "i": 62, "ok": false, "ref": "25000", "pred": "2500", "question": "If Marcy works for the same company for 40 years, she gets an annual pension of "}
+{"tag": "qwen3-4b_grpo", "i": 63, "ok": true, "ref": "1596", "pred": "1596", "question": "Aleena subscribed to a streaming service that charges her $140 per month. If the"}
+{"tag": "qwen3-4b_grpo", "i": 64, "ok": true, "ref": "300", "pred": "300", "question": "Sophia is thinking of taking a road trip in her car, and would like to know how "}
+{"tag": "qwen3-4b_grpo", "i": 65, "ok": true, "ref": "36", "pred": "36", "question": "Jim spends 2 hours watching TV and then decides to go to bed and reads for half "}
+{"tag": "qwen3-4b_grpo", "i": 66, "ok": true, "ref": "48", "pred": "48", "question": "There are four schools competing at a basketball tournament. Each school has sen"}
+{"tag": "qwen3-4b_grpo", "i": 67, "ok": true, "ref": "595", "pred": "595", "question": "A treasure hunter found a buried treasure chest filled with gems. There were 175"}
+{"tag": "qwen3-4b_grpo", "i": 68, "ok": true, "ref": "36", "pred": "36", "question": "There are twice as many boys as girls at Dr. Wertz's school. If there are 60 gir"}
+{"tag": "qwen3-4b_grpo", "i": 69, "ok": true, "ref": "60", "pred": "60", "question": "Bailey starts with a certain amount of money. Then she receives a weekly allowan"}
+{"tag": "qwen3-4b_grpo", "i": 70, "ok": true, "ref": "7425", "pred": "7425", "question": "Judy teaches 5 dance classes, every day, on the weekdays and 8 classes on Saturd"}
+{"tag": "qwen3-4b_grpo", "i": 71, "ok": true, "ref": "60", "pred": "60", "question": "Kelian has two recipes for preparing dishes, one having 20 instructions and the "}
+{"tag": "qwen3-4b_grpo", "i": 72, "ok": true, "ref": "221", "pred": "221", "question": "Tommy is fundraising for his charity by selling brownies for $3 a slice and chee"}
+{"tag": "qwen3-4b_grpo", "i": 73, "ok": true, "ref": "255", "pred": "255", "question": "Shiela bought five cell phones for $150 each for a 3-month installment. A 2% int"}
+{"tag": "qwen3-4b_grpo", "i": 74, "ok": true, "ref": "88", "pred": "88", "question": "Artie has a flower stand at the Farmers Market. He sells three kinds of flowers:"}
+{"tag": "qwen3-4b_grpo", "i": 75, "ok": true, "ref": "60", "pred": "60", "question": "Luke is spending time at the beach building sandcastles. He eventually notices t"}
+{"tag": "qwen3-4b_grpo", "i": 76, "ok": true, "ref": "5", "pred": "5", "question": "Cecilia just bought a new puppy. According to her veterinarian, she has to feed "}
+{"tag": "qwen3-4b_grpo", "i": 77, "ok": true, "ref": "100", "pred": "100", "question": "If Raymond does half as much laundry as Sarah, and Sarah does 4 times as much la"}
+{"tag": "qwen3-4b_grpo", "i": 78, "ok": true, "ref": "6", "pred": "6", "question": "Vincent can buy flowers in packages of 3 for $2.50 or in packages of 2 for $1. H"}
+{"tag": "qwen3-4b_grpo", "i": 79, "ok": true, "ref": "70", "pred": "70", "question": "John adopts a dog.  He takes the dog to the groomer, which costs $100.  The groo"}
+{"tag": "qwen3-4b_grpo", "i": 80, "ok": true, "ref": "10", "pred": "10", "question": "Two girls each got 1/6 of the 24 liters of water. Then a boy got 6 liters of wat"}
+{"tag": "qwen3-4b_grpo", "i": 81, "ok": true, "ref": "17", "pred": "17", "question": "Charlie had 10 stickers. He bought 21 stickers from a store in the mall and got "}
+{"tag": "qwen3-4b_grpo", "i": 82, "ok": true, "ref": "623", "pred": "623", "question": "Grace weighs 125 pounds. Alex weighs 2 pounds less than 4 times what Grace weigh"}
+{"tag": "qwen3-4b_grpo", "i": 83, "ok": true, "ref": "600", "pred": "600", "question": "Dan plants 3 rose bushes. Each rose bush has 25 roses. Each rose has 8 thorns. H"}
+{"tag": "qwen3-4b_grpo", "i": 84, "ok": true, "ref": "15", "pred": "15", "question": "A football team played 22 games. They won 8 more than they lost. How many did th"}
+{"tag": "qwen3-4b_grpo", "i": 85, "ok": true, "ref": "44", "pred": "44", "question": "Gene is sewing a quilt out of old souvenir t-shirts. He has one shirt from each "}
+{"tag": "qwen3-4b_grpo", "i": 86, "ok": true, "ref": "22", "pred": "22", "question": "Greg has an alarm set to ring three times a day as a reminder. When the alarm go"}
+{"tag": "qwen3-4b_grpo", "i": 87, "ok": true, "ref": "9360", "pred": "9360", "question": "A company pays each of its employees $600 in a month. The company has a policy o"}
+{"tag": "qwen3-4b_grpo", "i": 88, "ok": true, "ref": "8000", "pred": "8000", "question": "Marilyn's first record sold 10 times as many copies as Harald's. If they sold 88"}
+{"tag": "qwen3-4b_grpo", "i": 89, "ok": true, "ref": "24", "pred": "24", "question": "Christina is planning a birthday party and needs .75 gift bags per invited guest"}
+{"tag": "qwen3-4b_grpo", "i": 90, "ok": true, "ref": "225", "pred": "225", "question": "Ted the T-Rex was planning to bring potato salad to the dinosaur picnic.  He kno"}
+{"tag": "qwen3-4b_grpo", "i": 91, "ok": true, "ref": "28", "pred": "28", "question": "Jan has three times the number of pets as Marcia. Marcia has two more pets than "}
+{"tag": "qwen3-4b_grpo", "i": 92, "ok": true, "ref": "4", "pred": "4", "question": "Emily has 4 kids named Amy, Jackson, Corey, and James. Amy is 5 years older than"}
+{"tag": "qwen3-4b_grpo", "i": 93, "ok": true, "ref": "36", "pred": "36", "question": "Lee used to be able to run the 400-meter hurdles two seconds faster than Gerald "}
+{"tag": "qwen3-4b_grpo", "i": 94, "ok": true, "ref": "348", "pred": "348", "question": "In a neighborhood, the number of rabbits pets is twelve less than the combined n"}
+{"tag": "qwen3-4b_grpo", "i": 95, "ok": true, "ref": "40", "pred": "40", "question": "Out of the 200 Grade 5 students, 2/5 are boys and 2/3 of the girls are in the gi"}
+{"tag": "qwen3-4b_grpo", "i": 96, "ok": true, "ref": "3", "pred": "3", "question": "Harry slept 9 hours last night. His friend James slept only 2/3 of what Harry sl"}
+{"tag": "qwen3-4b_grpo", "i": 97, "ok": true, "ref": "12", "pred": "12", "question": "When Freda cooks canned tomatoes into sauce, they lose half their volume. Each 1"}
+{"tag": "qwen3-4b_grpo", "i": 98, "ok": true, "ref": "5", "pred": "5", "question": "Cars have lined up on the motorway. Some of the cars drive through in the first "}
+{"tag": "qwen3-4b_grpo", "i": 99, "ok": true, "ref": "58", "pred": "58", "question": "Mary is an avid gardener. Yesterday, she received 18 new potted plants from her "}

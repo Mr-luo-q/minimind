@@ -1,0 +1,8 @@
+{
+  "created": "2026-09-11 20:10",
+  "note": "首次跑批（v1 判分器）",
+  "ifeval_checker": "v1 text.split() —— 对中文失效: min_words 恒 False(0/5)、max_words 恒 True(5/5)",
+  "chat_template": "yes (gsm8k 已改走 chat template)",
+  "no_think": true,
+  "gsm8k_num": 100
+}

@@ -1,0 +1,4 @@
+tag,correct,total,accuracy
+qwen3-4b_base,94,100,0.9400
+qwen3-4b_sft,84,100,0.8400
+qwen3-4b_grpo,95,100,0.9500

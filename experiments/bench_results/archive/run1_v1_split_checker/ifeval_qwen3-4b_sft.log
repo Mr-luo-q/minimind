@@ -1,0 +1,14 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+gpu: NVIDIA RTX PRO 6000 Blackwell Server Edition
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.47it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.50it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  2.22it/s]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+adapter loaded: /root/autodl-tmp/qwen_sft/out/e1_qwen3-4b_lora
+[10/50] instr_acc=0.818 (64s)
+[20/50] instr_acc=0.810 (146s)
+[30/50] instr_acc=0.812 (220s)
+[40/50] instr_acc=0.810 (320s)
+[50/50] instr_acc=0.811 (393s)
+
+===== RESULT qwen3-4b_sft =====
+instruction-level: 81.1% (43/53)
+prompt-level      : 80.0% (40/50)

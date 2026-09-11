@@ -1,0 +1,4 @@
+tag,instruction_acc,prompt_acc,prompts,constraints
+qwen3-4b_base,0.8491,0.8400,50,53
+qwen3-4b_sft,0.8113,0.8000,50,53
+qwen3-4b_grpo,0.8302,0.8200,50,53

@@ -1,0 +1,139 @@
+==================== ENV ====================
+bench dir   : /root/autodl-tmp/qwen_grpo/bench
+out dir     : /root/autodl-tmp/qwen_grpo/bench/results
+python      : /root/autodl-tmp/qwen_sft/venv/bin/python
+which       : all     gsm8k_num: 100
+base        : /root/autodl-tmp/qwen_sft/models/Qwen3-4B
+adapter sft : /root/autodl-tmp/qwen_sft/out/e1_qwen3-4b_lora
+adapter grpo: /root/autodl-tmp/qwen_grpo/out/grpo_qwen3-4b_formal
+=============================================
+torch 2.8.0+cu128 | transformers 4.57.6 | datasets ok
+cuda True | NVIDIA RTX PRO 6000 Blackwell Server Edition
+=============================================
+
+---------- IFEval-lite: qwen3-4b_base ----------
+  /root/autodl-tmp/qwen_sft/venv/bin/python  /root/autodl-tmp/qwen_grpo/bench/ifeval_lite.py  --model  /root/autodl-tmp/qwen_sft/models/Qwen3-4B  --tag  qwen3-4b_base  --out  /root/autodl-tmp/qwen_grpo/bench/results/ifeval_results.csv  --no-think
+`torch_dtype` is deprecated! Use `dtype` instead!
+gpu: NVIDIA RTX PRO 6000 Blackwell Server Edition
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.26it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.30it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.91it/s]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+[10/50] instr_acc=0.909 (20s)
+[20/50] instr_acc=0.857 (49s)
+[30/50] instr_acc=0.844 (74s)
+[40/50] instr_acc=0.857 (101s)
+[50/50] instr_acc=0.849 (124s)
+
+===== RESULT qwen3-4b_base =====
+instruction-level: 84.9% (45/53)
+prompt-level      : 84.0% (42/50)
+EXIT=0  OK
+
+---------- GSM8K(100): qwen3-4b_base ----------
+  /root/autodl-tmp/qwen_sft/venv/bin/python  /root/autodl-tmp/qwen_grpo/bench/gsm8k_eval.py  --model  /root/autodl-tmp/qwen_sft/models/Qwen3-4B  --num  100  --tag  qwen3-4b_base  --out  /root/autodl-tmp/qwen_grpo/bench/results/gsm8k_results.csv  --no-think
+`torch_dtype` is deprecated! Use `dtype` instead!
+gpu: NVIDIA RTX PRO 6000 Blackwell Server Edition
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.46it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.51it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  2.22it/s]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+gsm8k test size: 1319
+[20/100] acc=0.950 (119s)
+[40/100] acc=0.950 (224s)
+[60/100] acc=0.950 (325s)
+[80/100] acc=0.938 (426s)
+[100/100] acc=0.940 (520s)
+
+===== RESULT qwen3-4b_base: 94.0% (94/100) =====
+EXIT=0  OK
+
+---------- IFEval-lite: qwen3-4b_sft ----------
+  /root/autodl-tmp/qwen_sft/venv/bin/python  /root/autodl-tmp/qwen_grpo/bench/ifeval_lite.py  --model  /root/autodl-tmp/qwen_sft/models/Qwen3-4B  --adapter  /root/autodl-tmp/qwen_sft/out/e1_qwen3-4b_lora  --tag  qwen3-4b_sft  --out  /root/autodl-tmp/qwen_grpo/bench/results/ifeval_results.csv  --no-think
+`torch_dtype` is deprecated! Use `dtype` instead!
+gpu: NVIDIA RTX PRO 6000 Blackwell Server Edition
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.47it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.50it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  2.22it/s]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+adapter loaded: /root/autodl-tmp/qwen_sft/out/e1_qwen3-4b_lora
+[10/50] instr_acc=0.818 (64s)
+[20/50] instr_acc=0.810 (146s)
+[30/50] instr_acc=0.812 (220s)
+[40/50] instr_acc=0.810 (320s)
+[50/50] instr_acc=0.811 (393s)
+
+===== RESULT qwen3-4b_sft =====
+instruction-level: 81.1% (43/53)
+prompt-level      : 80.0% (40/50)
+EXIT=0  OK
+
+---------- GSM8K(100): qwen3-4b_sft ----------
+  /root/autodl-tmp/qwen_sft/venv/bin/python  /root/autodl-tmp/qwen_grpo/bench/gsm8k_eval.py  --model  /root/autodl-tmp/qwen_sft/models/Qwen3-4B  --adapter  /root/autodl-tmp/qwen_sft/out/e1_qwen3-4b_lora  --num  100  --tag  qwen3-4b_sft  --out  /root/autodl-tmp/qwen_grpo/bench/results/gsm8k_results.csv  --no-think
+`torch_dtype` is deprecated! Use `dtype` instead!
+gpu: NVIDIA RTX PRO 6000 Blackwell Server Edition
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.35it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.42it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  2.10it/s]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+adapter loaded: /root/autodl-tmp/qwen_sft/out/e1_qwen3-4b_lora
+gsm8k test size: 1319
+[20/100] acc=0.800 (178s)
+[40/100] acc=0.800 (350s)
+[60/100] acc=0.833 (515s)
+[80/100] acc=0.838 (678s)
+[100/100] acc=0.840 (833s)
+
+===== RESULT qwen3-4b_sft: 84.0% (84/100) =====
+EXIT=0  OK
+
+---------- IFEval-lite: qwen3-4b_grpo ----------
+  /root/autodl-tmp/qwen_sft/venv/bin/python  /root/autodl-tmp/qwen_grpo/bench/ifeval_lite.py  --model  /root/autodl-tmp/qwen_sft/models/Qwen3-4B  --adapter  /root/autodl-tmp/qwen_grpo/out/grpo_qwen3-4b_formal  --tag  qwen3-4b_grpo  --out  /root/autodl-tmp/qwen_grpo/bench/results/ifeval_results.csv  --no-think
+`torch_dtype` is deprecated! Use `dtype` instead!
+gpu: NVIDIA RTX PRO 6000 Blackwell Server Edition
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.07it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.12it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.64it/s]
+/root/autodl-tmp/qwen_sft/venv/lib/python3.12/site-packages/peft/config.py:220: UserWarning: Unexpected keyword arguments ['lora_ga_config', 'monteclora_config', 'use_bdlora', 'velora_config'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+adapter loaded: /root/autodl-tmp/qwen_grpo/out/grpo_qwen3-4b_formal
+[10/50] instr_acc=0.909 (37s)
+[20/50] instr_acc=0.857 (90s)
+[30/50] instr_acc=0.844 (139s)
+[40/50] instr_acc=0.833 (190s)
+[50/50] instr_acc=0.830 (234s)
+
+===== RESULT qwen3-4b_grpo =====
+instruction-level: 83.0% (44/53)
+prompt-level      : 82.0% (41/50)
+EXIT=0  OK
+
+---------- GSM8K(100): qwen3-4b_grpo ----------
+  /root/autodl-tmp/qwen_sft/venv/bin/python  /root/autodl-tmp/qwen_grpo/bench/gsm8k_eval.py  --model  /root/autodl-tmp/qwen_sft/models/Qwen3-4B  --adapter  /root/autodl-tmp/qwen_grpo/out/grpo_qwen3-4b_formal  --num  100  --tag  qwen3-4b_grpo  --out  /root/autodl-tmp/qwen_grpo/bench/results/gsm8k_results.csv  --no-think
+`torch_dtype` is deprecated! Use `dtype` instead!
+gpu: NVIDIA RTX PRO 6000 Blackwell Server Edition
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.16it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.15it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.70it/s]
+/root/autodl-tmp/qwen_sft/venv/lib/python3.12/site-packages/peft/config.py:220: UserWarning: Unexpected keyword arguments ['lora_ga_config', 'monteclora_config', 'use_bdlora', 'velora_config'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+adapter loaded: /root/autodl-tmp/qwen_grpo/out/grpo_qwen3-4b_formal
+gsm8k test size: 1319
+[20/100] acc=0.950 (243s)
+[40/100] acc=0.925 (446s)
+[60/100] acc=0.933 (643s)
+[80/100] acc=0.938 (835s)
+[100/100] acc=0.950 (1022s)
+
+===== RESULT qwen3-4b_grpo: 95.0% (95/100) =====
+EXIT=0  OK
+
+==================== SUMMARY ====================
+# base vs SFT vs GRPO 评测对比
+
+> IFEval-lite 为自实现轻量版（50 条中文指令 + 规则判分，10 类约束），
+> 分数用于**模型间横向对比**，不代表官方 IFEval 榜单成绩。
+
+| 模型 | IFEval instruction-level | IFEval prompt-level | GSM8K (greedy) |
+|---|---|---|---|
+| qwen3-4b_base | 84.9% (53约束) | 84.0% (50题) | 94.0% (94/100) |
+| qwen3-4b_sft | 81.1% (53约束) | 80.0% (50题) | 84.0% (84/100) |
+| qwen3-4b_grpo | 83.0% (53约束) | 82.0% (50题) | 95.0% (95/100) |
+
+## 原始产物
+
+- `ifeval_results.csv` / `gsm8k_results.csv`（追加写，多模型自动成表）
+- `ifeval_results_<tag>.jsonl` / `gsm8k_results_<tag>.jsonl`（每题明细）
+- `ifeval_<tag>.log` / `gsm8k_<tag>.log`（完整 stdout）
+
+DONE -> /root/autodl-tmp/qwen_grpo/bench/results/bench_summary.md

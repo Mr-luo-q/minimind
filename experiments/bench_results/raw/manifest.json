@@ -1,0 +1,14 @@
+{
+  "created": "2026-09-11 21:42:54",
+  "note": "最终结果集：IFEval 用修正版判分器（长度 count_units + 结尾容错），GSM8K 沿用首次跑批",
+  "ifeval_checker": "count_units (CJK 逐字计) + end_with 容许尾部标点/引号/markdown 符",
+  "ifeval_source": "D:\\python_12week\\nanogpt\\minimind\\experiments\\bench_results\\batches\\results_v3-ifeval（修正后重跑）",
+  "gsm8k_source": "首次跑批（两处修正都只影响 IFEval，GSM8K 判分逻辑未变）",
+  "fixes": [
+    "旧版长度判分用 text.split()，中文无空格 → 127 汉字被算成 1 个词: min_words 恒 False、max_words 恒 True",
+    "旧版结尾判分过严，'……此致敬礼。' 因多一个句号被判 False（3 题三模型全挂，其中 5/6 是误判）"
+  ],
+  "chat_template": "yes (gsm8k 也走 chat template)",
+  "no_think": true,
+  "gsm8k_num": 100
+}

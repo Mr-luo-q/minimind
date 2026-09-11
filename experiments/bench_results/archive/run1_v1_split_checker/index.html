@@ -1,0 +1,352 @@
+<!doctype html><html lang='zh'><head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>base vs SFT vs GRPO 评测结果</title>
+<style>
+body{font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;margin:0;padding:28px;background:#f6f7f9;color:#1a1d23}
+h1{font-size:22px;margin:0 0 6px}h2{font-size:17px;margin:30px 0 10px;padding-bottom:6px;border-bottom:2px solid #e3e6ea}
+.meta{color:#6b7280;font-size:13px;margin-bottom:20px}
+.note{background:#fff8e1;border-left:4px solid #f0b429;padding:10px 14px;font-size:13px;border-radius:4px;margin:14px 0}
+table{border-collapse:collapse;width:100%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.08);border-radius:6px;overflow:hidden;font-size:14px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #eef0f3}
+th{background:#2d3748;color:#fff;font-weight:600;font-size:13px}
+tr:last-child td{border-bottom:none}tr:hover td{background:#f9fafb}
+.num{font-variant-numeric:tabular-nums;font-weight:600;font-size:15px}
+.ok{color:#0f7b3f}.bad{color:#c0392b}.pend{color:#9aa0a6}
+.tag{font-family:ui-monospace,Consolas,monospace;font-size:12.5px;color:#4b5563}
+details{background:#fff;border-radius:6px;margin:8px 0;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+summary{cursor:pointer;padding:11px 14px;font-weight:600;font-size:14px}
+details[open] summary{border-bottom:1px solid #eef0f3}
+.det{padding:10px 14px;font-size:13px}
+.q{padding:7px 0;border-bottom:1px dashed #eee}.q:last-child{border-bottom:none}
+.qid{color:#9aa0a6;font-size:12px;font-family:ui-monospace,monospace}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:#4b5563;word-break:break-all}
+</style>
+</head><body>
+<h1>base vs SFT vs GRPO 评测结果</h1>
+<div class='meta'>生成时间 2026-09-11 21:02:11 ｜ IFEval-lite 50 条中文指令 + GSM8K test 前 100 题 ｜ 贪心解码 ｜ 统一关闭思考模式(<span class='mono'>--no-think</span>)</div>
+<div class='note'><b>口径诚实说明</b>：IFEval-lite 是自实现的轻量版（规则自动判分），分数只用于 <b>base / SFT / GRPO 之间横向对比</b>，不代表官方 IFEval 榜单成绩。</div>
+<div class='note'><b>⚠️ 未找到 manifest.json</b>：无法确认这批分数用的哪版判分口径。v1（<span class='mono'>split()</span> 计长，对中文恒真/恒假）与修正版的结果<b>不可直接比较</b>。</div>
+<h2>总分对比</h2>
+<table><thead><tr><th>模型</th><th>IFEval instruction-level</th><th>IFEval prompt-level</th><th>GSM8K</th><th>状态</th></tr></thead><tbody>
+<tr><td><b>base（Qwen3-4B 底座）</b><br><span class='tag'>qwen3-4b_base</span></td><td class='num'>84.9% <span class='tag'>(53约束)</span></td><td class='num'>84.0% <span class='tag'>(50题)</span></td><td class='num'>94.0% <span class='tag'>(94/100)</span></td><td><span class='ok'>✅ 完成</span></td></tr>
+<tr><td><b>SFT（e1 LoRA, 1 epoch）</b><br><span class='tag'>qwen3-4b_sft</span></td><td class='num'>81.1% <span class='tag'>(53约束)</span></td><td class='num'>80.0% <span class='tag'>(50题)</span></td><td class='num'>84.0% <span class='tag'>(84/100)</span></td><td><span class='ok'>✅ 完成</span></td></tr>
+<tr><td><b>GRPO（通用 RM, 250 步）</b><br><span class='tag'>qwen3-4b_grpo</span></td><td class='num'>83.0% <span class='tag'>(53约束)</span></td><td class='num'>82.0% <span class='tag'>(50题)</span></td><td class='num'>95.0% <span class='tag'>(95/100)</span></td><td><span class='ok'>✅ 完成</span></td></tr>
+</tbody></table>
+<h2>IFEval-lite 每题明细</h2>
+<details><summary>base（Qwen3-4B 底座） — 50 题，42 题全约束通过，8 题有约束未过</summary><div class='det'>
+<div class='q'><span class='qid'>#0</span> <span class='ok'>全过</span> <div>请写一段介绍机器学习的文字，并确保包含至少两个以数字编号的要点。</div><div class='mono'>机器学习是人工智能的一个重要分支，它通过算法让计算机从数据中学习规律和模式，而无需显式编程。这项技术广泛应用于图像识别、自然语言处理、推荐系统等多个领域，极大地提升了数据分析和决策的效率。
+
+1. **数据驱动**：机器</div></div>
+<div class='q'><span class='qid'>#1</span> <span class='ok'>全过</span> <div>请用JSON格式回复你的名字与功能，例如 {&quot;name&quot;: ..., &quot;abil</div><div class='mono'>{&quot;name&quot;: &quot;通义千问&quot;, &quot;abilities&quot;: [&quot;回答问题&quot;, &quot;创作内容&quot;, &quot;提供信息&quot;, &quot;进行对话&quot;, &quot;执行指令&quot;]}</div></div>
+<div class='q'><span class='qid'>#2</span> <span class='ok'>全过</span> <div>写一段 200 字以内的自我介绍。</div><div class='mono'>你好，我叫李明，22岁，来自北京。目前就读于北京大学计算机科学与技术专业，主修方向是人工智能。性格开朗，喜欢编程和阅读，尤其对机器学习和数据科学感兴趣。平时喜欢运动，尤其是篮球和跑步，认为保持健康是高效学习的基础。我善于</div></div>
+<div class='q'><span class='qid'>#3</span> <span class='bad'>未过 1/1</span> <div>写一段关于环境保护的建议，至少 100 字。</div><div class='mono'>为了保护环境，我们应从日常生活做起，减少使用一次性塑料制品，提倡循环利用和垃圾分类。同时，节约用水用电，减少浪费，降低碳排放。多植树造林，保护森林资源，维护生态平衡。此外，积极参与环保活动，如清理垃圾、宣传环保知识，增强</div></div>
+<div class='q'><span class='qid'>#4</span> <span class='ok'>全过</span> <div>请列举三种编程语言，用顿号分隔。</div><div class='mono'>Python、Java、C++</div></div>
+<div class='q'><span class='qid'>#5</span> <span class='ok'>全过</span> <div>写一篇不少于三个自然段的短文，主题是人工智能的利弊。</div><div class='mono'>人工智能（AI）作为当今科技发展的热点，正在深刻地改变我们的生活。它在医疗、教育、交通等多个领域展现出巨大的潜力。例如，AI可以帮助医生更准确地诊断疾病，提高医疗效率；在教育中，智能系统能够根据学生的学习情况提供个性化的</div></div>
+<div class='q'><span class='qid'>#6</span> <span class='ok'>全过</span> <div>用一句话介绍量子计算，且必须以句号结尾。</div><div class='mono'>量子计算是一种利用量子力学原理进行信息处理和计算的新型计算技术。</div></div>
+<div class='q'><span class='qid'>#7</span> <span class='ok'>全过</span> <div>回答：什么是大语言模型？请以&#x27;大语言模型&#x27;开头。</div><div class='mono'>大语言模型是一种基于深度学习的大型神经网络模型，它能够理解和生成人类语言。这类模型通常由大量文本数据训练而成，具备强大的语言理解、文本生成、问答、翻译等多种能力。大语言模型在自然语言处理领域具有广泛的应用，如智能助手、内</div></div>
+<div class='q'><span class='qid'>#8</span> <span class='ok'>全过</span> <div>请输出一段完全不用逗号的描述性文字，介绍你的家乡。</div><div class='mono'>我的家乡坐落在群山环抱之中四季分明春天万物复苏绿意盎然夏天阳光明媚蝉鸣阵阵秋天金黄遍野稻谷飘香冬天银装素裹白雪皑皑这里的人们勤劳善良邻里和睦生活朴实而温馨每当夕阳西下炊烟袅袅总能感受到那份宁静与美好</div></div>
+<div class='q'><span class='qid'>#9</span> <span class='ok'>全过</span> <div>请用至少五句话介绍什么是强化学习。</div><div class='mono'>强化学习是一种机器学习方法，其核心思想是通过与环境的交互来学习最优行为策略。在这一过程中，智能体通过执行动作来与环境互动，并根据环境给出的反馈（即奖励或惩罚）来调整自己的行为。强化学习的关键在于最大化累积奖励，从而找到最</div></div>
+<div class='q'><span class='qid'>#10</span> <span class='ok'>全过</span> <div>请写一段关于健康的文字，其中必须包含&#x27;运动&#x27;和&#x27;睡眠&#x27;两个词。</div><div class='mono'>健康是人生最宝贵的财富，它不仅关乎身体的强健，也影响着心理的平衡与生活的质量。保持健康的生活方式，离不开规律的运动和充足的睡眠。运动能够增强体质，提高免疫力，帮助我们释放压力，保持积极向上的心态；而良好的睡眠则有助于身体</div></div>
+<div class='q'><span class='qid'>#11</span> <span class='ok'>全过</span> <div>请以JSON格式输出今天需要完成的三件事。</div><div class='mono'>```json
+{
+  &quot;tasks&quot;: [
+    {
+      &quot;task&quot;: &quot;完成今日的工作报告&quot;,
+      &quot;status&quot;: &quot;未完成&quot;
+    },
+    {
+      &quot;task&quot;: &quot;回复客户</div></div>
+<div class='q'><span class='qid'>#12</span> <span class='bad'>未过 1/1</span> <div>写一段关于阅读的好处的文字，不少于150字。</div><div class='mono'>阅读是一种重要的学习方式，它不仅能拓宽我们的知识视野，还能提升我们的思维能力和语言表达能力。通过阅读，我们可以了解不同文化、历史和思想，增长见识，培养同理心。同时，阅读有助于提高专注力和想象力，使我们在面对复杂问题时更加</div></div>
+<div class='q'><span class='qid'>#13</span> <span class='ok'>全过</span> <div>请用一个不超过50词的段落解释什么是区块链。</div><div class='mono'>区块链是一种分布式账本技术，通过加密和共识机制确保数据不可篡改、透明且去中心化，广泛应用于加密货币、智能合约等领域。</div></div>
+<div class='q'><span class='qid'>#14</span> <span class='bad'>未过 1/1</span> <div>请写一封信的结尾，最后一句必须是&#x27;此致敬礼&#x27;。</div><div class='mono'>感谢您的支持与理解，愿我们共同迎接更加美好的未来。此致敬礼。</div></div>
+<div class='q'><span class='qid'>#15</span> <span class='ok'>全过</span> <div>请用三个自然段介绍你的学习计划。</div><div class='mono'>我的学习计划以系统性、持续性和目标导向为核心。首先，我会根据学习目标制定详细的阶段性计划，将大目标分解为可执行的小任务，确保每一步都有明确的方向和时间安排。同时，我会结合自身情况，合理分配时间，平衡学习与休息，避免疲劳，</div></div>
+<div class='q'><span class='qid'>#16</span> <span class='ok'>全过</span> <div>请回答&#x27;什么是注意力机制&#x27;，开头必须写&#x27;注意力机制&#x27;四个字。</div><div class='mono'>注意力机制（Attention Mechanism）是一种在深度学习模型中用于增强模型对输入信息重要部分的关注能力的机制。它允许模型在处理序列数据时，动态地关注到与当前任务最相关的信息部分，从而提高模型的性能和解释性。
+</div></div>
+<div class='q'><span class='qid'>#17</span> <span class='ok'>全过</span> <div>写一段关于时间管理的文字，其中提到&#x27;优先级&#x27;这个词。</div><div class='mono'>时间管理是提高工作效率和实现个人目标的关键。在日常生活中，我们常常面临众多任务和责任，如何合理安排时间变得尤为重要。其中，明确任务的**优先级**是时间管理的核心。通过判断哪些事情更重要、更紧急，我们可以将精力集中在最关</div></div>
+<div class='q'><span class='qid'>#18</span> <span class='ok'>全过</span> <div>请用不少于八句话描述一次旅行。</div><div class='mono'>这次旅行始于一个阳光明媚的早晨，我带着满心的期待和对未知的向往，踏上了前往云南的旅程。飞机在云端翱翔，窗外的景色不断变换，让我感到无比兴奋。抵达昆明后，我首先去了石林，那里的奇特岩石让我惊叹不已，仿佛走进了一幅天然的画卷</div></div>
+<div class='q'><span class='qid'>#19</span> <span class='ok'>全过</span> <div>请用JSON格式给出本周书单。</div><div class='mono'>```json
+{
+  &quot;本周书单&quot;: [
+    {
+      &quot;书名&quot;: &quot;《被讨厌的勇气》&quot;,
+      &quot;作者&quot;: &quot;岸见一郎 / 古贺慎之介&quot;,
+      &quot;类型&quot;: &quot;心理学&quot;,
+      &quot;简介&quot;:</div></div>
+<div class='q'><span class='qid'>#20</span> <span class='ok'>全过</span> <div>写一段文字介绍宠物饲养，必须同时包含&#x27;责任&#x27;与&#x27;陪伴&#x27;。</div><div class='mono'>饲养宠物是一项需要责任感的行为，它不仅意味着要为宠物提供食物、水、住所和医疗保障，更是一种对生命负责的态度。宠物的陪伴能给主人带来温暖与快乐，而主人的陪伴同样也是宠物健康成长的重要因素。在共同生活中，责任与陪伴相辅相成，</div></div>
+<div class='q'><span class='qid'>#21</span> <span class='ok'>全过</span> <div>请用不超过120字总结这篇文章的要点。（直接输出总结）</div><div class='mono'>文章探讨了人工智能在医疗领域的应用，强调其在疾病诊断、治疗规划和患者管理中的潜力，同时指出数据隐私、算法偏见和伦理问题等挑战，呼吁加强监管与跨学科合作以实现安全有效的AI医疗发展。</div></div>
+<div class='q'><span class='qid'>#22</span> <span class='ok'>全过</span> <div>请分三段解释什么是碳中和。</div><div class='mono'>碳中和是指通过减少温室气体排放，尤其是二氧化碳的排放，并通过植树造林、碳捕捉与储存等手段，抵消人类活动所产生的二氧化碳排放，使一个地区或国家的净二氧化碳排放量为零的状态。碳中和的目标是减缓全球变暖，应对气候变化带来的影响</div></div>
+<div class='q'><span class='qid'>#23</span> <span class='ok'>全过</span> <div>以&#x27;今天天气&#x27;开头写一段话。</div><div class='mono'>今天天气晴朗，阳光明媚，微风轻拂，非常适合外出散步或进行户外活动。这样的好天气让人感到心情愉悦，也适合与朋友相聚，享受悠闲的时光。</div></div>
+<div class='q'><span class='qid'>#24</span> <span class='bad'>未过 1/1</span> <div>写一段关于坚持的文字，最后以&#x27;坚持就是胜利&#x27;结尾。</div><div class='mono'>在人生的旅途中，难免会遇到风雨和挫折。有时，前方的路似乎遥不可及，困难像大山一样压在肩上。但正是这些挑战，让我们更加明白坚持的意义。坚持不是一时的冲动，而是一种持续的力量，是面对困难时不轻言放弃的勇气。无论目标多么遥远，</div></div>
+<div class='q'><span class='qid'>#25</span> <span class='ok'>全过</span> <div>请列举三种常见的水果，不要用逗号。</div><div class='mono'>苹果 香蕉 橙子</div></div>
+<div class='q'><span class='qid'>#26</span> <span class='ok'>全过</span> <div>用至少六句话介绍你自己。</div><div class='mono'>你好！我是通义千问，一个由阿里巴巴集团研发的大型语言模型，我能够理解和生成人类语言，帮助用户解答问题、创作内容、进行对话等。我的训练数据来自互联网上的大量文本，使我具备广泛的知识和语言理解能力。我支持多种语言，包括中文、</div></div>
+<div class='q'><span class='qid'>#27</span> <span class='ok'>全过</span> <div>请写一段环保倡议书，其中必须提到&#x27;垃圾分类&#x27;。</div><div class='mono'>亲爱的朋友们：
+
+地球是我们共同的家园，保护环境，人人有责。为了让我们生活的环境更加美好，我们呼吁大家积极行动起来，从身边的小事做起，共同参与环保事业。
+
+垃圾分类是当前环保工作的重要一环。它不仅有助于资源的回收利用，还</div></div>
+<div class='q'><span class='qid'>#28</span> <span class='ok'>全过</span> <div>用JSON格式输出你的一天安排。</div><div class='mono'>```json
+{
+  &quot;day_schedule&quot;: {
+    &quot;07:00&quot;: &quot;起床并进行晨间伸展运动&quot;,
+    &quot;07:30&quot;: &quot;早餐：全麦面包、鸡蛋和水果&quot;,
+    &quot;08:00&quot;: &quot;开始工作/学习，</div></div>
+<div class='q'><span class='qid'>#29</span> <span class='bad'>未过 1/2</span> <div>写一段 150 字左右的文字描述秋天的景色。</div><div class='mono'>秋天，金风送爽，树叶由绿转黄，再染上一抹红，仿佛被夕阳吻过。枝头的果实沉甸甸地低垂，稻田里翻滚着金色的波浪。天空湛蓝如洗，偶尔有大雁南飞，划破宁静的天际。空气中弥漫着泥土与落叶的清香，微凉的风拂过脸庞，带来一丝清爽与惬意</div></div>
+<div class='q'><span class='qid'>#30</span> <span class='ok'>全过</span> <div>请以&#x27;失败是成功之母&#x27;开头，写一段感悟。</div><div class='mono'>失败是成功之母，这句话蕴含着深刻的哲理。它告诉我们，每一次的失败都是通向成功的必经之路。在追求目标的过程中，我们难免会遇到挫折和失败，但正是这些经历让我们更加清楚自己的不足，也让我们在反思中不断成长。失败不是终点，而是新</div></div>
+<div class='q'><span class='qid'>#31</span> <span class='ok'>全过</span> <div>写一段关于团队合作的文字，至少包含&#x27;沟通&#x27;与&#x27;信任&#x27;两个词。</div><div class='mono'>团队合作是实现共同目标的关键，它不仅需要每个成员各司其职，更需要良好的沟通和深厚的信任。在团队中，沟通是桥梁，它帮助成员理解彼此的想法，减少误解，促进协作。而信任则是基石，它让成员敢于承担责任，勇于表达意见，从而增强团队</div></div>
+<div class='q'><span class='qid'>#32</span> <span class='ok'>全过</span> <div>请用三个自然段介绍你最喜欢的季节。</div><div class='mono'>我最喜欢的季节是秋天。秋天带来了凉爽的天气，让人感到舒适宜人。树叶变得五彩斑斓，从金黄到深红，美不胜收。这个季节不仅景色迷人，还充满了丰收的喜悦，果园里果实累累，空气中弥漫着淡淡的果香。秋天是一个适合散步、赏景、享受宁静</div></div>
+<div class='q'><span class='qid'>#33</span> <span class='ok'>全过</span> <div>用一句话给出建议，必须以感叹号结尾。</div><div class='mono'>别害怕失败，每一次跌倒都是为了更坚强的重生！</div></div>
+<div class='q'><span class='qid'>#34</span> <span class='bad'>未过 1/1</span> <div>写一段介绍家乡的文字，不少于200字。</div><div class='mono'>我的家乡位于江南水乡，是一座历史悠久、风景如画的小城。这里四季分明，春日里桃花盛开，夏日绿荫成片，秋日稻谷飘香，冬日银装素裹，景色美不胜收。家乡的河流纵横交错，水清岸绿，两岸古桥林立，青石板路蜿蜒曲折，仿佛在诉说着千年的</div></div>
+<div class='q'><span class='qid'>#35</span> <span class='ok'>全过</span> <div>请输出一段不含任何标点的文字描述一个场景。</div><div class='mono'>夕阳的余晖洒在广阔的田野上金色的光芒笼罩着整个大地稻穗低垂在微风中轻轻摇曳仿佛在诉说着丰收的喜悦远处的山峦被染成了橘红色云朵像棉花糖一样漂浮在天空中偶尔有几只归鸟掠过天际留下一串清脆的鸣叫声田野间传来农民忙碌的身影他们弯</div></div>
+<div class='q'><span class='qid'>#36</span> <span class='ok'>全过</span> <div>请用不少于十句话介绍什么是数据科学。</div><div class='mono'>数据科学是一门结合了统计学、计算机科学和领域知识的跨学科领域，旨在从大量数据中提取有价值的信息和知识。它通过分析、建模和预测来帮助决策者更好地理解复杂的问题。数据科学不仅关注数据本身，还关注如何利用数据来解决实际问题。数</div></div>
+<div class='q'><span class='qid'>#37</span> <span class='ok'>全过</span> <div>请写一段关于友谊的文字，最后一句以句号结尾。</div><div class='mono'>友谊是人生旅途中最温暖的陪伴，它不因距离而疏远，不因时间而褪色。在彼此需要的时候给予支持，在彼此快乐的时候分享喜悦，这份情谊让生活更加充实而美好。真正的友谊，是心灵的契合，是岁月的见证。</div></div>
+<div class='q'><span class='qid'>#38</span> <span class='ok'>全过</span> <div>用JSON格式给出三个学习建议。</div><div class='mono'>```json
+{
+  &quot;learning_suggestions&quot;: [
+    {
+      &quot;title&quot;: &quot;制定明确的学习目标&quot;,
+      &quot;description&quot;: &quot;设定具体、可衡量的学习目标，有助</div></div>
+<div class='q'><span class='qid'>#39</span> <span class='ok'>全过</span> <div>写一段关于音乐的介绍，必须提到&#x27;旋律&#x27;这个词。</div><div class='mono'>音乐是一种通过声音组织而成的艺术形式，它能够激发情感、传达思想，并在人们心中留下深刻的印象。在音乐中，**旋律**是最核心的元素之一，它是一系列音符按照一定的节奏和音高排列而成的线性结构，是音乐中最具表现力和记忆点的部分</div></div>
+<div class='q'><span class='qid'>#40</span> <span class='ok'>全过</span> <div>请以&#x27;在人生的旅途中&#x27;开头写一段话。</div><div class='mono'>在人生的旅途中，我们不断前行，经历风雨，也收获阳光。每一次的相遇与别离，都是成长的印记；每一段旅程的终点，往往通向新的起点。无论前方是平坦还是崎岖，都应保持初心，勇敢前行，因为生命的意义，正是在于不断探索与超越。</div></div>
+<div class='q'><span class='qid'>#41</span> <span class='ok'>全过</span> <div>写一篇至少四个自然段的文章，主题是科技改变生活。</div><div class='mono'>科技的发展极大地改变了我们的生活方式，从日常的通讯到工作的效率，再到生活的便利性，科技无处不在。过去，人们依赖书信和电话进行交流，而现在，智能手机和互联网让信息传递变得即时且高效。无论是社交媒体、视频通话还是即时通讯软件</div></div>
+<div class='q'><span class='qid'>#42</span> <span class='ok'>全过</span> <div>请用不超过30个词回答：你今天开心吗？</div><div class='mono'>今天很开心，阳光明媚，心情愉快！</div></div>
+<div class='q'><span class='qid'>#43</span> <span class='ok'>全过</span> <div>写一段关于安全的文字，同时包含&#x27;预防&#x27;和&#x27;检查&#x27;。</div><div class='mono'>安全是保障生命和财产不受威胁的基础，必须时刻保持警惕。在日常生活中，预防是关键，只有提前识别潜在风险，才能有效避免事故的发生。同时，定期进行检查也是确保安全的重要措施，通过细致的排查，可以及时发现并消除隐患，为安全提供坚</div></div>
+<div class='q'><span class='qid'>#44</span> <span class='ok'>全过</span> <div>请用JSON格式介绍你自己。</div><div class='mono'>```json
+{
+  &quot;name&quot;: &quot;通义千问&quot;,
+  &quot;type&quot;: &quot;large language model&quot;,
+  &quot;description&quot;: &quot;通义千问是阿里巴巴集团旗下的通义实验室研发的大型语言模型，能</div></div>
+<div class='q'><span class='qid'>#45</span> <span class='bad'>未过 1/1</span> <div>写一段 300 字左右的短文介绍一座你喜欢的城市。</div><div class='mono'>我最喜欢的城市是杭州。这座位于浙江省的城市，既有悠久的历史，又充满现代气息。西湖是杭州最著名的景点，湖光山色美不胜收，四季皆有不同的韵味。春天，湖边的桃花盛开，游客们纷纷前来踏青；夏天，湖面波光粼粼，是避暑的好去处；秋天</div></div>
+<div class='q'><span class='qid'>#46</span> <span class='ok'>全过</span> <div>请用至少七句话说明为什么要早起。</div><div class='mono'>早起有很多好处，首先，它能帮助我们更好地安排一天的时间，避免因为迟到而匆忙。其次，早起可以让我们在一天开始的时候有更多的时间进行锻炼，从而提高身体健康水平。再者，早起有助于提高专注力和效率，因为人在清晨的时候大脑比较清醒</div></div>
+<div class='q'><span class='qid'>#47</span> <span class='ok'>全过</span> <div>以&#x27;你好&#x27;开头，写一段欢迎词。</div><div class='mono'>你好！欢迎来到这个充满活力与机遇的平台。无论你是新朋友还是老伙伴，这里都是你交流、学习和成长的好地方。希望你能在这里找到属于自己的精彩时刻，一起探索更多可能性，共创美好未来！</div></div>
+<div class='q'><span class='qid'>#48</span> <span class='bad'>未过 1/1</span> <div>写一段关于读书的文字，以&#x27;书中自有黄金屋&#x27;结尾。</div><div class='mono'>书中的世界浩瀚无垠，每一本书都是一扇通向未知的门。无论是历史的长河、科学的奥秘，还是情感的细腻，文字总能带我们穿越时空，与无数智者对话。读书不仅丰富了我们的知识，也拓宽了我们的视野，让我们在喧嚣的世界中找到内心的宁静。无</div></div>
+<div class='q'><span class='qid'>#49</span> <span class='ok'>全过</span> <div>请列举至少三种编程语言，不要使用逗号。</div><div class='mono'>Python Java C++</div></div>
+</div></details>
+<details><summary>SFT（e1 LoRA, 1 epoch） — 50 题，40 题全约束通过，10 题有约束未过</summary><div class='det'>
+<div class='q'><span class='qid'>#0</span> <span class='ok'>全过</span> <div>请写一段介绍机器学习的文字，并确保包含至少两个以数字编号的要点。</div><div class='mono'>机器学习是一种人工智能的分支，它使计算机能够从数据中学习并改进其性能，而无需显式编程。通过分析大量数据，机器学习算法能够识别模式、做出预测或执行任务，从而在不断学习和适应中提高其准确性。机器学习在许多领域都有广泛的应用，</div></div>
+<div class='q'><span class='qid'>#1</span> <span class='ok'>全过</span> <div>请用JSON格式回复你的名字与功能，例如 {&quot;name&quot;: ..., &quot;abil</div><div class='mono'>```json
+{
+  &quot;name&quot;: &quot;AI助手&quot;,
+  &quot;abilities&quot;: [
+    &quot;回答问题&quot;,
+    &quot;提供信息&quot;,
+    &quot;执行任务&quot;,
+    &quot;学习新知识&quot;,
+    &quot;与用户进行对话&quot;
+  </div></div>
+<div class='q'><span class='qid'>#2</span> <span class='ok'>全过</span> <div>写一段 200 字以内的自我介绍。</div><div class='mono'>大家好，我叫李明，是一名热爱学习和探索的大学生。我来自中国的一个小城市，大学专业是计算机科学与技术。在学习过程中，我不仅掌握了编程、算法等专业知识，还培养了良好的逻辑思维和解决问题的能力。我性格开朗，乐于与人交流，喜欢团</div></div>
+<div class='q'><span class='qid'>#3</span> <span class='bad'>未过 1/1</span> <div>写一段关于环境保护的建议，至少 100 字。</div><div class='mono'>为了保护我们的地球，我们每个人都可以采取一些实际行动来促进环境保护。首先，我们应该减少使用一次性塑料制品，如塑料袋、塑料瓶和塑料餐具，改用可重复使用的物品，如布袋、玻璃瓶和不锈钢餐具。其次，我们应该节约用水和用电，关闭不</div></div>
+<div class='q'><span class='qid'>#4</span> <span class='ok'>全过</span> <div>请列举三种编程语言，用顿号分隔。</div><div class='mono'>Python、Java、C++。</div></div>
+<div class='q'><span class='qid'>#5</span> <span class='ok'>全过</span> <div>写一篇不少于三个自然段的短文，主题是人工智能的利弊。</div><div class='mono'>人工智能，作为21世纪最具革命性的技术之一，正在深刻地改变着我们的生活。它在医疗、教育、交通、金融等多个领域展现出巨大的潜力，为人类社会带来了前所未有的便利和效率。例如，在医疗领域，人工智能能够通过分析大量的医学数据，帮</div></div>
+<div class='q'><span class='qid'>#6</span> <span class='ok'>全过</span> <div>用一句话介绍量子计算，且必须以句号结尾。</div><div class='mono'>量子计算是一种利用量子力学原理进行信息处理和计算的新型计算技术，它能够实现传统计算机无法达到的并行计算能力，从而在某些领域展现出巨大的潜力。</div></div>
+<div class='q'><span class='qid'>#7</span> <span class='ok'>全过</span> <div>回答：什么是大语言模型？请以&#x27;大语言模型&#x27;开头。</div><div class='mono'>大语言模型（Large Language Model，简称LLM）是一种基于深度学习的自然语言处理技术，它通过在大量文本数据上进行训练，能够理解和生成人类语言。大语言模型通常具有大量的参数，这使得它们能够捕捉到语言中的复</div></div>
+<div class='q'><span class='qid'>#8</span> <span class='bad'>未过 1/1</span> <div>请输出一段完全不用逗号的描述性文字，介绍你的家乡。</div><div class='mono'>我的家乡坐落在一片宁静而美丽的山谷之中，四周环绕着郁郁葱葱的森林和清澈见底的溪流。这里四季分明，春天里万物复苏，绿意盎然；夏天则热情似火，阳光明媚，是户外活动的最佳时节；秋天，金黄的稻田和红叶点缀着山林，美不胜收；冬天，</div></div>
+<div class='q'><span class='qid'>#9</span> <span class='ok'>全过</span> <div>请用至少五句话介绍什么是强化学习。</div><div class='mono'>强化学习是一种机器学习方法，它通过与环境的交互来学习如何做出决策，以最大化累积奖励。在强化学习中，智能体（即学习的实体）通过尝试不同的行动来探索环境，并根据环境的反馈（即奖励或惩罚）来调整其策略，以达到长期的最优目标。这</div></div>
+<div class='q'><span class='qid'>#10</span> <span class='ok'>全过</span> <div>请写一段关于健康的文字，其中必须包含&#x27;运动&#x27;和&#x27;睡眠&#x27;两个词。</div><div class='mono'>健康是每个人追求的目标，它不仅关乎身体的强健，也与心理的平衡息息相关。在追求健康的过程中，&#x27;运动&#x27;和&#x27;睡眠&#x27;扮演着至关重要的角色。
+
+&#x27;运动&#x27;是保持身体健康不可或缺的一部分。定期进行适量的体育活动，如跑步、游泳、瑜伽或力</div></div>
+<div class='q'><span class='qid'>#11</span> <span class='ok'>全过</span> <div>请以JSON格式输出今天需要完成的三件事。</div><div class='mono'>```json
+{
+  &quot;today_tasks&quot;: [
+    {
+      &quot;task&quot;: &quot;完成项目报告&quot;,
+      &quot;description&quot;: &quot;撰写并提交项目报告，包括项目背景、目标、实施过程和成果分析</div></div>
+<div class='q'><span class='qid'>#12</span> <span class='bad'>未过 1/1</span> <div>写一段关于阅读的好处的文字，不少于150字。</div><div class='mono'>阅读是一种能够丰富我们知识、提升我们思维能力、增强我们情感共鸣的活动。通过阅读，我们能够接触到不同文化、不同历史时期的知识，拓宽我们的视野，增长我们的见识。阅读不仅能够帮助我们学习新知识，还能够培养我们的批判性思维和分析</div></div>
+<div class='q'><span class='qid'>#13</span> <span class='ok'>全过</span> <div>请用一个不超过50词的段落解释什么是区块链。</div><div class='mono'>区块链是一种分布式账本技术，通过加密算法确保数据不可篡改，所有交易记录公开透明，由网络节点共同验证和存储，实现去中心化、安全性和可追溯性。</div></div>
+<div class='q'><span class='qid'>#14</span> <span class='bad'>未过 1/1</span> <div>请写一封信的结尾，最后一句必须是&#x27;此致敬礼&#x27;。</div><div class='mono'>感谢您一直以来的支持与信任，您的理解与鼓励是我前进的动力。无论未来我们身处何方，这份情谊将永远铭记于心。愿我们共同面对生活的挑战，携手走过每一个难关，创造更多美好的回忆。请相信，无论何时何地，我都会以最真诚的心意与您保持</div></div>
+<div class='q'><span class='qid'>#15</span> <span class='ok'>全过</span> <div>请用三个自然段介绍你的学习计划。</div><div class='mono'>我的学习计划旨在全面提升我的知识水平和技能，以适应不断变化的环境和挑战。首先，我将专注于深化我的专业领域知识，通过阅读最新的学术论文、参加专业研讨会和在线课程，确保我的知识体系保持最新和前沿。同时，我计划学习一些跨学科的</div></div>
+<div class='q'><span class='qid'>#16</span> <span class='ok'>全过</span> <div>请回答&#x27;什么是注意力机制&#x27;，开头必须写&#x27;注意力机制&#x27;四个字。</div><div class='mono'>注意力机制是一种在机器学习和深度学习中用于增强模型对输入数据中重要部分的关注度的技术。它允许模型在处理信息时，能够动态地选择和聚焦于最相关或最重要的部分，从而提高模型的性能和效率。
+
+注意力机制的核心思想是，当处理一个序</div></div>
+<div class='q'><span class='qid'>#17</span> <span class='ok'>全过</span> <div>写一段关于时间管理的文字，其中提到&#x27;优先级&#x27;这个词。</div><div class='mono'>时间管理是现代生活中不可或缺的一项技能，它帮助我们更有效地利用时间，提高工作效率，实现个人和职业目标。在时间管理中，一个关键的概念是“优先级”。优先级是指任务或活动在完成顺序上的重要性或紧急性。正确地识别和排序任务的优先</div></div>
+<div class='q'><span class='qid'>#18</span> <span class='ok'>全过</span> <div>请用不少于八句话描述一次旅行。</div><div class='mono'>一次旅行，是一次心灵的洗礼，是一次对未知世界的探索。我选择了一次前往日本京都的旅行，那是一个充满历史与文化气息的地方。在旅行的开始，我带着对未知的期待和对新事物的好奇，踏上了前往京都的旅程。在京都，我首先参观了著名的伏见</div></div>
+<div class='q'><span class='qid'>#19</span> <span class='ok'>全过</span> <div>请用JSON格式给出本周书单。</div><div class='mono'>```json
+{
+  &quot;本周书单&quot;: [
+    {
+      &quot;书名&quot;: &quot;《时间之书》&quot;,
+      &quot;作者&quot;: &quot;约翰·格林&quot;,
+      &quot;简介&quot;: &quot;《时间之书》是约翰·格林的代表作之一，讲述了主人公在</div></div>
+<div class='q'><span class='qid'>#20</span> <span class='ok'>全过</span> <div>写一段文字介绍宠物饲养，必须同时包含&#x27;责任&#x27;与&#x27;陪伴&#x27;。</div><div class='mono'>在现代社会，宠物已经成为许多人生活中不可或缺的一部分。它们不仅为我们的生活增添了无尽的欢乐和温暖，也成为了我们情感上的重要寄托。然而，饲养宠物是一项需要高度责任感和耐心的活动。责任意味着对宠物的健康、安全和幸福负责，包括</div></div>
+<div class='q'><span class='qid'>#21</span> <span class='ok'>全过</span> <div>请用不超过120字总结这篇文章的要点。（直接输出总结）</div><div class='mono'>本文探讨了人工智能在医疗领域的应用，强调了其在疾病诊断、治疗方案制定和患者管理方面的潜力。文章指出，尽管存在数据隐私、算法偏见和伦理问题，但通过持续的技术进步和政策监管，人工智能有望为医疗行业带来革命性的变革，提高诊疗效</div></div>
+<div class='q'><span class='qid'>#22</span> <span class='ok'>全过</span> <div>请分三段解释什么是碳中和。</div><div class='mono'>### 一、碳中和的定义
+
+碳中和是指通过减少温室气体排放和增加碳汇，使一个地区或国家的温室气体排放量与吸收量相等，从而实现净零排放。碳中和的目标是通过一系列措施，如提高能源效率、发展可再生能源、植树造林等，减少人类活动</div></div>
+<div class='q'><span class='qid'>#23</span> <span class='ok'>全过</span> <div>以&#x27;今天天气&#x27;开头写一段话。</div><div class='mono'>今天天气晴朗，阳光明媚，微风轻拂，非常适合外出活动。这样的天气不仅让人感到舒适，也激发了人们探索自然、享受户外活动的热情。无论是散步、骑行还是野餐，都能在这样的天气中找到乐趣。同时，晴朗的天气也意味着空气质量良好，适合进</div></div>
+<div class='q'><span class='qid'>#24</span> <span class='bad'>未过 1/1</span> <div>写一段关于坚持的文字，最后以&#x27;坚持就是胜利&#x27;结尾。</div><div class='mono'>在人生的旅途中，我们常常会遇到各种挑战和困难。这些挑战可能来自于外部环境的限制，也可能来自于内心的挣扎与自我怀疑。面对这些困难，有人选择退缩，有人选择放弃，而真正能够成就一番事业的人，往往都是那些不屈不挠、坚持不懈的人。</div></div>
+<div class='q'><span class='qid'>#25</span> <span class='ok'>全过</span> <div>请列举三种常见的水果，不要用逗号。</div><div class='mono'>苹果、香蕉、橙子。</div></div>
+<div class='q'><span class='qid'>#26</span> <span class='ok'>全过</span> <div>用至少六句话介绍你自己。</div><div class='mono'>你好！我是Qwen，一个基于人工智能的大型语言模型，我被设计用来理解和生成人类语言。我能够进行各种任务，如回答问题、创作文本、进行对话、提供信息和建议等。我的知识库涵盖了广泛的领域，包括但不限于科学、技术、文化、历史、艺</div></div>
+<div class='q'><span class='qid'>#27</span> <span class='ok'>全过</span> <div>请写一段环保倡议书，其中必须提到&#x27;垃圾分类&#x27;。</div><div class='mono'>尊敬的市民朋友们：
+
+在这个充满活力与希望的时代，我们每个人都是地球的守护者。为了共同维护我们赖以生存的环境，我们倡议大家积极参与到环保行动中来，特别是垃圾分类，这是实现可持续发展的重要一环。
+
+垃圾分类，是将垃圾按照其</div></div>
+<div class='q'><span class='qid'>#28</span> <span class='ok'>全过</span> <div>用JSON格式输出你的一天安排。</div><div class='mono'>```json
+{
+  &quot;day&quot;: &quot;2023-10-05&quot;,
+  &quot;schedule&quot;: [
+    {
+      &quot;time&quot;: &quot;07:00&quot;,
+      &quot;activity&quot;: &quot;Wake up and s</div></div>
+<div class='q'><span class='qid'>#29</span> <span class='bad'>未过 1/2</span> <div>写一段 150 字左右的文字描述秋天的景色。</div><div class='mono'>秋天，是一幅色彩斑斓的画卷。金黄的银杏叶在微风中轻轻摇曳，仿佛在诉说着季节的更替。枫叶如火，红得热烈，点缀在绿意盎然的林间，构成了一幅动人的秋日风景。天空湛蓝，云朵轻盈，阳光透过稀疏的云层，洒在大地上，给万物披上了一层温</div></div>
+<div class='q'><span class='qid'>#30</span> <span class='ok'>全过</span> <div>请以&#x27;失败是成功之母&#x27;开头，写一段感悟。</div><div class='mono'>失败是成功之母，这句话蕴含着深刻的哲理，它告诉我们，每一次的失败都是通向成功的必经之路。在人生的旅途中，我们难免会遇到挫折和失败，但正是这些经历，让我们学会了坚持、勇气和智慧。每一次的失败，都是对我们的考验，它教会我们如</div></div>
+<div class='q'><span class='qid'>#31</span> <span class='ok'>全过</span> <div>写一段关于团队合作的文字，至少包含&#x27;沟通&#x27;与&#x27;信任&#x27;两个词。</div><div class='mono'>在团队合作中，沟通与信任是构建高效、和谐工作环境的基石。有效的沟通能够确保团队成员之间信息的准确传递，减少误解和冲突，促进团队目标的实现。无论是日常的交流还是项目进展的汇报，清晰、及时的沟通都是团队成功的关键。它不仅能够</div></div>
+<div class='q'><span class='qid'>#32</span> <span class='ok'>全过</span> <div>请用三个自然段介绍你最喜欢的季节。</div><div class='mono'>我最喜欢的季节是秋天。秋天是一个充满诗意和宁静的季节，它不仅带来了凉爽的微风，还为大自然披上了金黄色的外衣。在这个季节里，树叶从绿色变成了各种深浅不一的黄色、橙色和红色，仿佛是大自然在进行一场盛大的色彩盛宴。秋天的天空格</div></div>
+<div class='q'><span class='qid'>#33</span> <span class='ok'>全过</span> <div>用一句话给出建议，必须以感叹号结尾。</div><div class='mono'>别忘了，保持积极的心态和健康的生活方式，你将会发现生活充满了无限可能！</div></div>
+<div class='q'><span class='qid'>#34</span> <span class='bad'>未过 1/1</span> <div>写一段介绍家乡的文字，不少于200字。</div><div class='mono'>我的家乡，位于中国南方的一个小城，名叫江城。这里四季分明，春暖花开，夏绿荫浓，秋果累累，冬雪皑皑，四季皆有其独特的魅力。江城，不仅是一个地理位置上的概念，更是一种文化与情感的象征。这里的人们热情好客，邻里之间关系融洽，形</div></div>
+<div class='q'><span class='qid'>#35</span> <span class='bad'>未过 1/1</span> <div>请输出一段不含任何标点的文字描述一个场景。</div><div class='mono'>在一片宁静的森林深处，阳光透过层层叠叠的树叶，洒在柔软的草地上，形成斑驳的光影。微风轻轻吹过，带着淡淡的花香和泥土的气息，让人心旷神怡。远处，几只小鸟在枝头跳跃，发出清脆的鸣叫声，为这片宁静增添了几分生机。在一条清澈的小</div></div>
+<div class='q'><span class='qid'>#36</span> <span class='ok'>全过</span> <div>请用不少于十句话介绍什么是数据科学。</div><div class='mono'>数据科学是一门跨学科的领域，它结合了统计学、计算机科学、数学、工程学和领域知识，以从数据中提取有价值的信息和知识。数据科学的目标是通过分析和解释数据，帮助决策者做出更明智的决策，推动创新，解决复杂问题。以下是关于数据科学</div></div>
+<div class='q'><span class='qid'>#37</span> <span class='ok'>全过</span> <div>请写一段关于友谊的文字，最后一句以句号结尾。</div><div class='mono'>友谊，是人与人之间最珍贵的情感纽带。它不以物质的多少来衡量，而是以心灵的契合和相互的理解来维系。在人生的旅途中，朋友是那盏不灭的灯，照亮我们前行的道路，给予我们温暖和力量。无论是在顺境中分享喜悦，还是在逆境中相互扶持，友</div></div>
+<div class='q'><span class='qid'>#38</span> <span class='ok'>全过</span> <div>用JSON格式给出三个学习建议。</div><div class='mono'>```json
+{
+  &quot;learning_suggestions&quot;: [
+    {
+      &quot;title&quot;: &quot;设定明确的学习目标&quot;,
+      &quot;description&quot;: &quot;在开始学习之前，明确你的学习目标</div></div>
+<div class='q'><span class='qid'>#39</span> <span class='ok'>全过</span> <div>写一段关于音乐的介绍，必须提到&#x27;旋律&#x27;这个词。</div><div class='mono'>音乐，作为一种人类情感的表达方式，自古以来就深深植根于我们的文化与生活中。它不仅能够触动人心，激发情感，还能跨越语言的障碍，连接不同文化背景的人们。在音乐的众多元素中，旋律无疑是最具表现力和感染力的之一。旋律是音乐的核心</div></div>
+<div class='q'><span class='qid'>#40</span> <span class='ok'>全过</span> <div>请以&#x27;在人生的旅途中&#x27;开头写一段话。</div><div class='mono'>在人生的旅途中，我们每个人都是独一无二的探险者，带着各自的梦想、希望和挑战，踏上未知的旅程。这条路上，有欢笑，也有泪水；有成功，也有失败。每一次的跌倒，都是成长的契机，每一次的坚持，都是对自我价值的肯定。在旅途中，我们学</div></div>
+<div class='q'><span class='qid'>#41</span> <span class='ok'>全过</span> <div>写一篇至少四个自然段的文章，主题是科技改变生活。</div><div class='mono'>科技，作为人类智慧的结晶，自古以来就对我们的生活产生了深远的影响。从最初的火种到现代的互联网，科技的每一次进步都为人类的生活带来了便利和改变。在当今社会，科技已经渗透到生活的方方面面，从日常的通讯、购物、娱乐，到工作、学</div></div>
+<div class='q'><span class='qid'>#42</span> <span class='ok'>全过</span> <div>请用不超过30个词回答：你今天开心吗？</div><div class='mono'>今天很开心，阳光明媚，心情愉快。</div></div>
+<div class='q'><span class='qid'>#43</span> <span class='ok'>全过</span> <div>写一段关于安全的文字，同时包含&#x27;预防&#x27;和&#x27;检查&#x27;。</div><div class='mono'>在日常生活中，安全是每个人必须重视的话题。无论是家庭、工作还是出行，预防和检查都是确保安全的关键步骤。预防，意味着在问题发生之前采取措施，避免潜在的风险和危险。这包括但不限于定期进行安全培训、遵守安全规定、使用安全设备等</div></div>
+<div class='q'><span class='qid'>#44</span> <span class='ok'>全过</span> <div>请用JSON格式介绍你自己。</div><div class='mono'>```json
+{
+  &quot;name&quot;: &quot;AI助手&quot;,
+  &quot;description&quot;: &quot;我是一个基于人工智能技术的助手，旨在提供帮助和解答问题。我能够理解并回答各种问题，包括但不限于技术、生活、娱乐等。我能够进行对话</div></div>
+<div class='q'><span class='qid'>#45</span> <span class='bad'>未过 1/1</span> <div>写一段 300 字左右的短文介绍一座你喜欢的城市。</div><div class='mono'>在众多的城市中，我最喜爱的是上海。这座位于中国东部沿海的繁华都市，以其独特的魅力和丰富的文化，吸引着无数游客和移民。上海不仅是中国的经济、金融、贸易中心，也是国际化的都市，拥有着世界级的商业区、金融中心和文化地标。
+
+上</div></div>
+<div class='q'><span class='qid'>#46</span> <span class='ok'>全过</span> <div>请用至少七句话说明为什么要早起。</div><div class='mono'>1. 早起可以让你在一天开始时就有一个良好的状态，有助于提高一天的工作效率和学习效率。当你在清晨醒来时，身体和大脑都处于最清醒、最活跃的状态，这为完成一天的任务提供了最佳的条件。
+
+2. 早起可以让你有更多的时间进行自我</div></div>
+<div class='q'><span class='qid'>#47</span> <span class='ok'>全过</span> <div>以&#x27;你好&#x27;开头，写一段欢迎词。</div><div class='mono'>你好，欢迎来到我们的平台！我们非常高兴能与您相遇，无论您是初次访问还是再次光临，我们都希望您能在这里找到所需的信息和资源。我们的目标是提供一个友好、支持和充满活力的环境，让每一位用户都能感受到被重视和被理解。在这里，您可</div></div>
+<div class='q'><span class='qid'>#48</span> <span class='bad'>未过 1/1</span> <div>写一段关于读书的文字，以&#x27;书中自有黄金屋&#x27;结尾。</div><div class='mono'>在浩瀚的书海中，每一本书都是一扇通往未知世界的窗户，每一本书都是一次心灵的旅行。无论是历史的长河、科学的奥秘、文学的瑰宝，还是哲学的深邃，书籍为我们提供了无尽的知识和智慧。通过阅读，我们不仅能够了解过去，还能预见未来，探</div></div>
+<div class='q'><span class='qid'>#49</span> <span class='ok'>全过</span> <div>请列举至少三种编程语言，不要使用逗号。</div><div class='mono'>1. Python
+2. Java
+3. C++</div></div>
+</div></details>
+<details><summary>GRPO（通用 RM, 250 步） — 50 题，41 题全约束通过，9 题有约束未过</summary><div class='det'>
+<div class='q'><span class='qid'>#0</span> <span class='ok'>全过</span> <div>请写一段介绍机器学习的文字，并确保包含至少两个以数字编号的要点。</div><div class='mono'>机器学习是人工智能的一个重要分支，它通过算法让计算机从数据中学习规律和模式，而无需显式编程。这项技术广泛应用于图像识别、自然语言处理、推荐系统等领域，极大地提升了各行业的效率和智能化水平。
+
+1. **数据驱动**：机器</div></div>
+<div class='q'><span class='qid'>#1</span> <span class='ok'>全过</span> <div>请用JSON格式回复你的名字与功能，例如 {&quot;name&quot;: ..., &quot;abil</div><div class='mono'>{&quot;name&quot;: &quot;通义千问&quot;, &quot;abilities&quot;: [&quot;回答问题&quot;, &quot;创作内容&quot;, &quot;语言理解与生成&quot;, &quot;多轮对话&quot;, &quot;逻辑推理&quot;, &quot;代码编写&quot;, &quot;多语言支持&quot;]}</div></div>
+<div class='q'><span class='qid'>#2</span> <span class='ok'>全过</span> <div>写一段 200 字以内的自我介绍。</div><div class='mono'>你好，我叫李明，22岁，来自北京。目前就读于清华大学计算机科学与技术专业，主修人工智能方向。性格开朗，善于沟通，喜欢探索新技术和解决问题。在校期间积极参与各类科技竞赛和项目实践，具备扎实的编程基础和良好的团队合作能力。业</div></div>
+<div class='q'><span class='qid'>#3</span> <span class='bad'>未过 1/1</span> <div>写一段关于环境保护的建议，至少 100 字。</div><div class='mono'>为了保护环境，我们应从日常生活做起，减少使用一次性塑料制品，提倡循环利用和垃圾分类。同时，节约用水用电，减少浪费，降低碳排放。多植树造林，保护绿地，维护生态平衡。此外，积极参与环保活动，如清理垃圾、宣传环保知识，增强公众</div></div>
+<div class='q'><span class='qid'>#4</span> <span class='ok'>全过</span> <div>请列举三种编程语言，用顿号分隔。</div><div class='mono'>Python、Java、C++</div></div>
+<div class='q'><span class='qid'>#5</span> <span class='ok'>全过</span> <div>写一篇不少于三个自然段的短文，主题是人工智能的利弊。</div><div class='mono'>人工智能（AI）作为当今科技发展的热点，正在深刻地改变我们的生活。它在医疗、交通、教育等多个领域展现出巨大的潜力。例如，AI可以帮助医生更准确地诊断疾病，提高医疗效率；在交通领域，自动驾驶技术正在逐步成熟，有望减少交通事</div></div>
+<div class='q'><span class='qid'>#6</span> <span class='ok'>全过</span> <div>用一句话介绍量子计算，且必须以句号结尾。</div><div class='mono'>量子计算是一种利用量子力学原理进行信息处理和计算的先进技术，能够解决经典计算机难以处理的复杂问题。</div></div>
+<div class='q'><span class='qid'>#7</span> <span class='ok'>全过</span> <div>回答：什么是大语言模型？请以&#x27;大语言模型&#x27;开头。</div><div class='mono'>大语言模型是一种基于深度学习的大型人工智能模型，能够理解和生成人类语言。它通过在海量文本数据上进行训练，学习语言的结构、语义和语境，从而实现自然语言处理任务，如文本生成、问答、翻译、摘要等。大语言模型通常具有庞大的参数量</div></div>
+<div class='q'><span class='qid'>#8</span> <span class='ok'>全过</span> <div>请输出一段完全不用逗号的描述性文字，介绍你的家乡。</div><div class='mono'>我的家乡坐落在群山环抱之中四季分明春天万物复苏绿意盎然夏天阳光明媚蝉鸣阵阵秋天金风送爽稻谷飘香冬天银装素裹白雪皑皑这里的人们勤劳善良世代相传着淳朴的风俗和深厚的文化底蕴每当夕阳西下炊烟袅袅总能感受到家的温暖和生活的美好</div></div>
+<div class='q'><span class='qid'>#9</span> <span class='ok'>全过</span> <div>请用至少五句话介绍什么是强化学习。</div><div class='mono'>强化学习是一种机器学习方法，通过与环境的交互来学习最优行为策略。它基于试错机制，智能体通过执行动作获得奖励或惩罚，从而调整自己的策略以最大化长期累积奖励。强化学习广泛应用于游戏、机器人控制、自动驾驶等领域。其核心在于平衡</div></div>
+<div class='q'><span class='qid'>#10</span> <span class='ok'>全过</span> <div>请写一段关于健康的文字，其中必须包含&#x27;运动&#x27;和&#x27;睡眠&#x27;两个词。</div><div class='mono'>健康是人生最宝贵的财富，它需要我们从日常生活的点滴中用心呵护。定期进行运动，不仅能增强体质，还能提升心情，让生活更加充满活力。同时，保证充足的睡眠也是保持健康的重要因素。只有在充足的休息中，身体才能得到恢复，精神才能焕发</div></div>
+<div class='q'><span class='qid'>#11</span> <span class='ok'>全过</span> <div>请以JSON格式输出今天需要完成的三件事。</div><div class='mono'>```json
+{
+  &quot;tasks&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;description&quot;: &quot;完成今日工作汇报文档&quot;
+    },
+    {
+      &quot;id&quot;: 2,
+    </div></div>
+<div class='q'><span class='qid'>#12</span> <span class='bad'>未过 1/1</span> <div>写一段关于阅读的好处的文字，不少于150字。</div><div class='mono'>阅读是一种滋养心灵、拓展视野的活动，它不仅能丰富我们的知识，还能提升我们的思维能力和情感共鸣。通过阅读，我们能够接触到不同的文化、思想和人生经历，从而拓宽视野，增强理解力。阅读还能够培养耐心和专注力，帮助我们在快节奏的生</div></div>
+<div class='q'><span class='qid'>#13</span> <span class='ok'>全过</span> <div>请用一个不超过50词的段落解释什么是区块链。</div><div class='mono'>区块链是一种分布式账本技术，通过加密和共识机制确保数据不可篡改、透明且去中心化，用于记录交易和存储信息。</div></div>
+<div class='q'><span class='qid'>#14</span> <span class='bad'>未过 1/1</span> <div>请写一封信的结尾，最后一句必须是&#x27;此致敬礼&#x27;。</div><div class='mono'>感谢您的支持与理解，愿我们共同迎接更加美好的未来。此致敬礼。</div></div>
+<div class='q'><span class='qid'>#15</span> <span class='ok'>全过</span> <div>请用三个自然段介绍你的学习计划。</div><div class='mono'>我的学习计划以系统性和持续性为核心，分为短期、中期和长期三个阶段。短期目标是巩固基础知识，确保在各个学科领域中掌握核心概念和基本技能。我会每天安排固定时间进行复习和预习，利用碎片时间进行知识点的巩固，确保学习内容扎实有效</div></div>
+<div class='q'><span class='qid'>#16</span> <span class='ok'>全过</span> <div>请回答&#x27;什么是注意力机制&#x27;，开头必须写&#x27;注意力机制&#x27;四个字。</div><div class='mono'>注意力机制（Attention Mechanism）是一种在深度学习模型中用于增强模型对输入信息重要部分的关注能力的机制。它允许模型在处理序列数据时，动态地关注与当前任务最相关的部分，从而提高模型的性能和解释性。
+
+注意</div></div>
+<div class='q'><span class='qid'>#17</span> <span class='ok'>全过</span> <div>写一段关于时间管理的文字，其中提到&#x27;优先级&#x27;这个词。</div><div class='mono'>时间管理是提高工作效率和实现个人目标的关键技能。在日常生活中，我们面对众多任务和责任，如何合理安排时间变得尤为重要。其中，明确任务的**优先级**是时间管理的核心。通过区分哪些事情紧急且重要，哪些可以延后或委托他人处理，</div></div>
+<div class='q'><span class='qid'>#18</span> <span class='ok'>全过</span> <div>请用不少于八句话描述一次旅行。</div><div class='mono'>这次旅行始于一个阳光明媚的早晨，我带着期待和兴奋踏上了前往云南的旅程。飞机在云端翱翔，窗外的景色不断变换，让我感到无比放松和自由。抵达昆明后，我首先参观了石林，那奇特的岩石地貌让我惊叹不已，仿佛走进了另一个世界。接着，我</div></div>
+<div class='q'><span class='qid'>#19</span> <span class='ok'>全过</span> <div>请用JSON格式给出本周书单。</div><div class='mono'>```json
+{
+  &quot;本周书单&quot;: [
+    {
+      &quot;书名&quot;: &quot;《原子习惯》&quot;,
+      &quot;作者&quot;: &quot;詹姆斯·克利尔&quot;,
+      &quot;简介&quot;: &quot;通过科学的方法解释如何培养习惯，帮助读者建立可持</div></div>
+<div class='q'><span class='qid'>#20</span> <span class='ok'>全过</span> <div>写一段文字介绍宠物饲养，必须同时包含&#x27;责任&#x27;与&#x27;陪伴&#x27;。</div><div class='mono'>饲养宠物是一项需要责任感的活动，它不仅意味着要提供食物、水和住所，更意味着要承担起照顾宠物健康与幸福的义务。宠物的陪伴能为人类带来温暖与快乐，而责任则是确保这种陪伴长久而稳定的基石。在与宠物共处的每一天，我们都在学习如何</div></div>
+<div class='q'><span class='qid'>#21</span> <span class='ok'>全过</span> <div>请用不超过120字总结这篇文章的要点。（直接输出总结）</div><div class='mono'>文章探讨了人工智能在医疗领域的应用，强调其在疾病诊断、治疗规划和患者管理中的潜力，同时指出数据隐私、算法偏见和伦理问题等挑战，呼吁建立规范化的监管框架以促进AI医疗的健康发展。</div></div>
+<div class='q'><span class='qid'>#22</span> <span class='ok'>全过</span> <div>请分三段解释什么是碳中和。</div><div class='mono'>碳中和是指通过减少温室气体排放和增加碳汇，使一个地区或国家在一定时间内产生的二氧化碳及其他温室气体的排放量，与通过植树造林、碳捕捉与储存等手段吸收的二氧化碳量相平衡，从而实现净零排放的状态。碳中和的目标是减缓全球变暖，应</div></div>
+<div class='q'><span class='qid'>#23</span> <span class='ok'>全过</span> <div>以&#x27;今天天气&#x27;开头写一段话。</div><div class='mono'>今天天气晴朗，阳光明媚，微风轻拂，非常适合外出散步或进行户外活动。这样的好天气让人感到心情愉悦，也适合与朋友相聚，享受悠闲的时光。</div></div>
+<div class='q'><span class='qid'>#24</span> <span class='bad'>未过 1/1</span> <div>写一段关于坚持的文字，最后以&#x27;坚持就是胜利&#x27;结尾。</div><div class='mono'>在人生的旅途中，难免会遇到风雨和挫折。有时，前方的路似乎遥不可及，困难像大山一样压在肩上。但正是这些挑战，让我们更加明白坚持的意义。坚持不是一时的冲动，而是一种持续的力量，它让我们在黑暗中看到希望，在低谷中找到方向。无论</div></div>
+<div class='q'><span class='qid'>#25</span> <span class='ok'>全过</span> <div>请列举三种常见的水果，不要用逗号。</div><div class='mono'>苹果 香蕉 橙子</div></div>
+<div class='q'><span class='qid'>#26</span> <span class='ok'>全过</span> <div>用至少六句话介绍你自己。</div><div class='mono'>你好！我是通义千问，一个由阿里巴巴集团研发的大型语言模型，我能够理解和生成多种语言的文本。我的设计目标是帮助用户获取信息、解决问题和创造内容。我具备广泛的知识库，可以回答各种问题，从科学知识到文化历史，从技术细节到日常生</div></div>
+<div class='q'><span class='qid'>#27</span> <span class='ok'>全过</span> <div>请写一段环保倡议书，其中必须提到&#x27;垃圾分类&#x27;。</div><div class='mono'>**环保倡议书**
+
+亲爱的朋友们：
+
+地球是我们共同的家园，保护环境是每个人应尽的责任。为了让我们生活的环境更加美好，我们呼吁大家积极行动起来，从身边的小事做起，共同践行绿色低碳的生活方式。
+
+首先，我们倡议大家认真做</div></div>
+<div class='q'><span class='qid'>#28</span> <span class='ok'>全过</span> <div>用JSON格式输出你的一天安排。</div><div class='mono'>```json
+{
+  &quot;day_schedule&quot;: {
+    &quot;07:00&quot;: &quot;起床并进行晨间伸展运动&quot;,
+    &quot;07:30&quot;: &quot;早餐：全麦面包、鸡蛋和水果&quot;,
+    &quot;08:00&quot;: &quot;开始工作/学习，</div></div>
+<div class='q'><span class='qid'>#29</span> <span class='bad'>未过 1/2</span> <div>写一段 150 字左右的文字描述秋天的景色。</div><div class='mono'>秋天，金风送爽，树叶渐染斑斓色彩，枫叶如火，银杏似金，梧桐染赤，层林尽染，美不胜收。天空湛蓝如洗，白云悠然飘荡，阳光温柔而不刺眼，洒在大地上，映出温暖的色调。田野里，稻谷成熟，沉甸甸地低垂着头，仿佛在诉说着丰收的喜悦。空</div></div>
+<div class='q'><span class='qid'>#30</span> <span class='ok'>全过</span> <div>请以&#x27;失败是成功之母&#x27;开头，写一段感悟。</div><div class='mono'>失败是成功之母，这句话蕴含着深刻的智慧。每一次的失败，都是成长的契机，它让我们看清不足，激发潜能，促使我们更加努力地前行。人生路上，挫折与挑战无处不在，但正是这些经历，塑造了我们的坚韧与智慧。失败不是终点，而是通向成功的</div></div>
+<div class='q'><span class='qid'>#31</span> <span class='ok'>全过</span> <div>写一段关于团队合作的文字，至少包含&#x27;沟通&#x27;与&#x27;信任&#x27;两个词。</div><div class='mono'>团队合作是实现共同目标的关键，它不仅依赖于每个人的努力，更离不开有效的沟通和深厚的信任。在团队中，良好的沟通能够确保信息传递准确无误，减少误解和冲突，使每个人都能明确自己的角色和任务。而信任则是团队合作的基石，它让成员敢</div></div>
+<div class='q'><span class='qid'>#32</span> <span class='ok'>全过</span> <div>请用三个自然段介绍你最喜欢的季节。</div><div class='mono'>我最喜欢的季节是秋天。秋天带来了凉爽的微风和金黄的落叶，整个世界仿佛被染上了一层温暖的色调。天空变得格外高远，阳光也变得柔和，让人感到宁静与舒适。秋天是收获的季节，田野里稻谷成熟，果园里果实累累，人们在忙碌中也感受到生活</div></div>
+<div class='q'><span class='qid'>#33</span> <span class='ok'>全过</span> <div>用一句话给出建议，必须以感叹号结尾。</div><div class='mono'>别放弃，坚持下去，你一定能够实现自己的梦想！</div></div>
+<div class='q'><span class='qid'>#34</span> <span class='bad'>未过 1/1</span> <div>写一段介绍家乡的文字，不少于200字。</div><div class='mono'>我的家乡位于江南水乡，是一座历史悠久、风景如画的小城。这里四季分明，春日里桃花盛开，夏日绿荫成片，秋日稻谷飘香，冬日银装素裹，每一季都有独特的韵味。家乡的河流纵横交错，水清岸绿，舟行其间，仿佛置身画中。老街两旁是青砖灰瓦</div></div>
+<div class='q'><span class='qid'>#35</span> <span class='ok'>全过</span> <div>请输出一段不含任何标点的文字描述一个场景。</div><div class='mono'>夕阳的余晖洒在广阔的田野上金色的光芒笼罩着整个大地远处的山峦轮廓模糊仿佛被一层薄纱轻轻覆盖着微风拂过带来泥土和草木混合的清香几只归巢的鸟儿掠过天际留下一串清脆的鸣叫声田野间散落着农人忙碌的身影他们弯腰插秧的身影在暮色中显</div></div>
+<div class='q'><span class='qid'>#36</span> <span class='ok'>全过</span> <div>请用不少于十句话介绍什么是数据科学。</div><div class='mono'>数据科学是一门结合了统计学、计算机科学和领域知识的跨学科领域，旨在从大量数据中提取有价值的信息和洞见。它通过分析数据来发现模式、趋势和关联，从而帮助决策者做出更明智的判断。数据科学不仅关注数据的收集和处理，还涉及数据的解</div></div>
+<div class='q'><span class='qid'>#37</span> <span class='bad'>未过 1/1</span> <div>请写一段关于友谊的文字，最后一句以句号结尾。</div><div class='mono'>友谊是心灵之间的桥梁，是彼此信任与支持的纽带。在人生的旅途中，朋友如同温暖的阳光，照亮我们前行的道路。无论风雨还是晴空，真正的友谊始终陪伴左右，给予我们力量与希望。 friendship is a bridge betw</div></div>
+<div class='q'><span class='qid'>#38</span> <span class='ok'>全过</span> <div>用JSON格式给出三个学习建议。</div><div class='mono'>```json
+{
+  &quot;learning_suggestions&quot;: [
+    {
+      &quot;title&quot;: &quot;制定明确的学习目标&quot;,
+      &quot;description&quot;: &quot;设定具体、可衡量的学习目标，有助</div></div>
+<div class='q'><span class='qid'>#39</span> <span class='ok'>全过</span> <div>写一段关于音乐的介绍，必须提到&#x27;旋律&#x27;这个词。</div><div class='mono'>音乐是一种通过声音组织而成的艺术形式，它能够激发情感、传达思想并连接人心。在音乐中，**旋律**是最核心的元素之一，它如同一条流动的河流，引导听众进入不同的情感世界。无论是欢快的舞曲还是深沉的交响乐，**旋律**都赋予了</div></div>
+<div class='q'><span class='qid'>#40</span> <span class='ok'>全过</span> <div>请以&#x27;在人生的旅途中&#x27;开头写一段话。</div><div class='mono'>在人生的旅途中，我们不断前行，经历风雨，也收获阳光。每一次的跌宕与起伏，都是成长的印记，让我们更加懂得珍惜当下，勇敢面对未知的未来。无论前方道路多么曲折，只要心中有光，便能走出属于自己的精彩篇章。</div></div>
+<div class='q'><span class='qid'>#41</span> <span class='ok'>全过</span> <div>写一篇至少四个自然段的文章，主题是科技改变生活。</div><div class='mono'>科技的发展极大地改变了我们的生活方式，从日常的通讯到工作的效率，科技无处不在地影响着我们的生活。过去，人们依赖书信和电话进行交流，而如今，智能手机和互联网让信息传递变得即时且便捷。无论是社交媒体、视频通话还是即时通讯软件</div></div>
+<div class='q'><span class='qid'>#42</span> <span class='ok'>全过</span> <div>请用不超过30个词回答：你今天开心吗？</div><div class='mono'>今天很开心，阳光明媚，心情愉快！</div></div>
+<div class='q'><span class='qid'>#43</span> <span class='ok'>全过</span> <div>写一段关于安全的文字，同时包含&#x27;预防&#x27;和&#x27;检查&#x27;。</div><div class='mono'>安全是保障生命和财产不受威胁的基础，必须时刻保持警惕。在日常生活中，**预防**是关键，只有提前识别潜在风险，才能有效避免事故的发生。同时，定期进行**检查**，确保设备、环境和操作流程符合安全标准，是维护安全的重要措施</div></div>
+<div class='q'><span class='qid'>#44</span> <span class='ok'>全过</span> <div>请用JSON格式介绍你自己。</div><div class='mono'>```json
+{
+  &quot;name&quot;: &quot;通义千问&quot;,
+  &quot;type&quot;: &quot;large language model&quot;,
+  &quot;description&quot;: &quot;通义千问是阿里巴巴集团旗下的通义实验室研发的大型语言模型，能</div></div>
+<div class='q'><span class='qid'>#45</span> <span class='bad'>未过 1/1</span> <div>写一段 300 字左右的短文介绍一座你喜欢的城市。</div><div class='mono'>我最喜欢的城市是杭州。这座位于浙江省的城市，既有悠久的历史，又充满现代活力。西湖是杭州最著名的景点，湖光山色四季皆美，尤其是春天的苏堤春晓，让人流连忘返。杭州还以“人间天堂”著称，这里的生活节奏舒缓，空气清新，是许多人向</div></div>
+<div class='q'><span class='qid'>#46</span> <span class='ok'>全过</span> <div>请用至少七句话说明为什么要早起。</div><div class='mono'>早起有很多好处，对个人健康、工作效率和生活质量都有积极影响。首先，早起可以让人在一天开始时有更多的时间进行锻炼，有助于增强体质和保持健康。其次，早起能够帮助人更好地安排一天的计划，避免因为拖延而影响工作和学习效率。第三，</div></div>
+<div class='q'><span class='qid'>#47</span> <span class='ok'>全过</span> <div>以&#x27;你好&#x27;开头，写一段欢迎词。</div><div class='mono'>你好！欢迎来到这个充满机遇与活力的平台。在这里，我们期待与您携手共进，探索无限可能，共创美好未来。无论您是新朋友还是老伙伴，都欢迎您积极参与，分享见解，共同成长。让我们一起开启这段精彩的旅程！</div></div>
+<div class='q'><span class='qid'>#48</span> <span class='bad'>未过 1/1</span> <div>写一段关于读书的文字，以&#x27;书中自有黄金屋&#x27;结尾。</div><div class='mono'>书中的世界浩瀚无垠，每一本书都是一扇通向未知的门。无论是历史的回响、哲理的沉思，还是情感的共鸣，阅读总能带我们穿越时空，遇见不同的人生。在文字的海洋中，我们不仅收获知识，更获得心灵的滋养与成长。书中自有黄金屋，亦有心灵的</div></div>
+<div class='q'><span class='qid'>#49</span> <span class='ok'>全过</span> <div>请列举至少三种编程语言，不要使用逗号。</div><div class='mono'>Python Java C++</div></div>
+</div></details>
+<h2>GSM8K 错题明细</h2>
+<div class='meta'>只列错题——对题数量太大（每模型 100 条），需要看对题请查 jsonl 明细文件。</div>
+<details><summary>base（Qwen3-4B 底座） — 100 题中 6 题答错</summary><div class='det'>
+<div class='q'><span class='qid'>#12</span> <span class='bad'>ref=13 pred=12</span><div>Carlos is planting a lemon tree. The tree will cost $90 to plant. Each year it w</div></div>
+<div class='q'><span class='qid'>#21</span> <span class='bad'>ref=14 pred=23</span><div>Raymond and Samantha are cousins. Raymond was born 6 years before Samantha. Raym</div></div>
+<div class='q'><span class='qid'>#45</span> <span class='bad'>ref=104 pred=44</span><div>Meredith is a freelance blogger who writes about health topics and submits to cl</div></div>
+<div class='q'><span class='qid'>#62</span> <span class='bad'>ref=25000 pred=2500</span><div>If Marcy works for the same company for 40 years, she gets an annual pension of </div></div>
+<div class='q'><span class='qid'>#73</span> <span class='bad'>ref=255 pred=51</span><div>Shiela bought five cell phones for $150 each for a 3-month installment. A 2% int</div></div>
+<div class='q'><span class='qid'>#89</span> <span class='bad'>ref=24 pred=18</span><div>Christina is planning a birthday party and needs .75 gift bags per invited guest</div></div>
+</div></details>
+<details><summary>SFT（e1 LoRA, 1 epoch） — 100 题中 16 题答错</summary><div class='det'>
+<div class='q'><span class='qid'>#2</span> <span class='bad'>ref=70000 pred=65000</span><div>Josh decides to try flipping a house.  He buys a house for $80,000 and then puts</div></div>
+<div class='q'><span class='qid'>#7</span> <span class='bad'>ref=160 pred=120</span><div>Carla is downloading a 200 GB file. Normally she can download 2 GB/minute, but 4</div></div>
+<div class='q'><span class='qid'>#12</span> <span class='bad'>ref=13 pred=12</span><div>Carlos is planting a lemon tree. The tree will cost $90 to plant. Each year it w</div></div>
+<div class='q'><span class='qid'>#19</span> <span class='bad'>ref=6 pred=4</span><div>Marissa is hiking a 12-mile trail. She took 1 hour to walk the first 4 miles, th</div></div>
+<div class='q'><span class='qid'>#20</span> <span class='bad'>ref=15 pred=14.67</span><div>I have 10 liters of orange drink that are two-thirds water and I wish to add it </div></div>
+<div class='q'><span class='qid'>#21</span> <span class='bad'>ref=14 pred=23</span><div>Raymond and Samantha are cousins. Raymond was born 6 years before Samantha. Raym</div></div>
+<div class='q'><span class='qid'>#31</span> <span class='bad'>ref=80 pred=53.33</span><div>Gunter is trying to count the jelly beans in a jar. He asks his friends how many</div></div>
+<div class='q'><span class='qid'>#37</span> <span class='bad'>ref=2 pred=35</span><div>John plans to sell all his toys and use the money to buy video games. He has 13 </div></div>
+<div class='q'><span class='qid'>#43</span> <span class='bad'>ref=48 pred=240</span><div>According to its nutritional info, a bag of chips has 250 calories per serving. </div></div>
+<div class='q'><span class='qid'>#54</span> <span class='bad'>ref=40 pred=33</span><div>The Doubtfire sisters are driving home with 7 kittens adopted from the local ani</div></div>
+<div class='q'><span class='qid'>#62</span> <span class='bad'>ref=25000 pred=1500000</span><div>If Marcy works for the same company for 40 years, she gets an annual pension of </div></div>
+<div class='q'><span class='qid'>#63</span> <span class='bad'>ref=1596 pred=924</span><div>Aleena subscribed to a streaming service that charges her $140 per month. If the</div></div>
+<div class='q'><span class='qid'>#78</span> <span class='bad'>ref=6 pred=18</span><div>Vincent can buy flowers in packages of 3 for $2.50 or in packages of 2 for $1. H</div></div>
+<div class='q'><span class='qid'>#87</span> <span class='bad'>ref=9360 pred=780</span><div>A company pays each of its employees $600 in a month. The company has a policy o</div></div>
+<div class='q'><span class='qid'>#89</span> <span class='bad'>ref=24 pred=18</span><div>Christina is planning a birthday party and needs .75 gift bags per invited guest</div></div>
+<div class='q'><span class='qid'>#98</span> <span class='bad'>ref=5 pred=25</span><div>Cars have lined up on the motorway. Some of the cars drive through in the first </div></div>
+</div></details>
+<details><summary>GRPO（通用 RM, 250 步） — 100 题中 5 题答错</summary><div class='det'>
+<div class='q'><span class='qid'>#12</span> <span class='bad'>ref=13 pred=12</span><div>Carlos is planting a lemon tree. The tree will cost $90 to plant. Each year it w</div></div>
+<div class='q'><span class='qid'>#21</span> <span class='bad'>ref=14 pred=23</span><div>Raymond and Samantha are cousins. Raymond was born 6 years before Samantha. Raym</div></div>
+<div class='q'><span class='qid'>#31</span> <span class='bad'>ref=80 pred=93.33</span><div>Gunter is trying to count the jelly beans in a jar. He asks his friends how many</div></div>
+<div class='q'><span class='qid'>#45</span> <span class='bad'>ref=104 pred=44</span><div>Meredith is a freelance blogger who writes about health topics and submits to cl</div></div>
+<div class='q'><span class='qid'>#62</span> <span class='bad'>ref=25000 pred=2500</span><div>If Marcy works for the same company for 40 years, she gets an annual pension of </div></div>
+</div></details>
+</body></html>

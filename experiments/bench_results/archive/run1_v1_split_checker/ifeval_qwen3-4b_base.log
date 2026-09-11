@@ -1,0 +1,13 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+gpu: NVIDIA RTX PRO 6000 Blackwell Server Edition
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.26it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.30it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.91it/s]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+[10/50] instr_acc=0.909 (20s)
+[20/50] instr_acc=0.857 (49s)
+[30/50] instr_acc=0.844 (74s)
+[40/50] instr_acc=0.857 (101s)
+[50/50] instr_acc=0.849 (124s)
+
+===== RESULT qwen3-4b_base =====
+instruction-level: 84.9% (45/53)
+prompt-level      : 84.0% (42/50)

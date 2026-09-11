@@ -1,0 +1,4 @@
+tag,模型,ifeval_instruction_acc,ifeval_prompt_acc,ifeval_constraints,gsm8k_acc,gsm8k_correct,gsm8k_total,状态
+qwen3-4b_base,base（Qwen3-4B 底座）,0.9811,0.9800,53,0.9400,94,100,完成
+qwen3-4b_sft,"SFT（e1 LoRA, 1 epoch）",0.8868,0.8800,53,0.8400,84,100,完成
+qwen3-4b_grpo,"GRPO（通用 RM, 250 步）",0.9623,0.9600,53,0.9500,95,100,完成

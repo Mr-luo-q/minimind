@@ -1,0 +1,57 @@
+
+======================================================================
+RUN /root/autodl-tmp/qwen_sft/venv/bin/python /root/autodl-tmp/qwen_grpo/bench/ifeval_lite.py --model /root/autodl-tmp/qwen_sft/models/Qwen3-4B --tag qwen3-4b_base --out /root/autodl-tmp/qwen_grpo/bench/results_v3/qwen3-4b_base/ifeval_results.csv --no-think
+`torch_dtype` is deprecated! Use `dtype` instead!
+gpu: NVIDIA RTX PRO 6000 Blackwell Server Edition
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.47it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.52it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  2.24it/s]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+[10/50] instr_acc=1.000 (20s)
+[20/50] instr_acc=0.952 (49s)
+[30/50] instr_acc=0.969 (74s)
+[40/50] instr_acc=0.976 (101s)
+[50/50] instr_acc=0.981 (124s)
+
+===== RESULT qwen3-4b_base =====
+instruction-level: 98.1% (52/53)
+prompt-level      : 98.0% (49/50)
+EXIT 0 for qwen3-4b_base
+
+======================================================================
+RUN /root/autodl-tmp/qwen_sft/venv/bin/python /root/autodl-tmp/qwen_grpo/bench/ifeval_lite.py --model /root/autodl-tmp/qwen_sft/models/Qwen3-4B --tag qwen3-4b_sft --out /root/autodl-tmp/qwen_grpo/bench/results_v3/qwen3-4b_sft/ifeval_results.csv --no-think --adapter /root/autodl-tmp/qwen_sft/out/e1_qwen3-4b_lora
+`torch_dtype` is deprecated! Use `dtype` instead!
+gpu: NVIDIA RTX PRO 6000 Blackwell Server Edition
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.45it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.51it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  2.23it/s]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+adapter loaded: /root/autodl-tmp/qwen_sft/out/e1_qwen3-4b_lora
+[10/50] instr_acc=0.818 (65s)
+[20/50] instr_acc=0.857 (150s)
+[30/50] instr_acc=0.875 (225s)
+[40/50] instr_acc=0.881 (328s)
+[50/50] instr_acc=0.887 (402s)
+
+===== RESULT qwen3-4b_sft =====
+instruction-level: 88.7% (47/53)
+prompt-level      : 88.0% (44/50)
+EXIT 0 for qwen3-4b_sft
+
+======================================================================
+RUN /root/autodl-tmp/qwen_sft/venv/bin/python /root/autodl-tmp/qwen_grpo/bench/ifeval_lite.py --model /root/autodl-tmp/qwen_sft/models/Qwen3-4B --tag qwen3-4b_grpo --out /root/autodl-tmp/qwen_grpo/bench/results_v3/qwen3-4b_grpo/ifeval_results.csv --no-think --adapter /root/autodl-tmp/qwen_grpo/out/grpo_qwen3-4b_formal
+`torch_dtype` is deprecated! Use `dtype` instead!
+gpu: NVIDIA RTX PRO 6000 Blackwell Server Edition
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.46it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.49it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  2.19it/s]
+/root/autodl-tmp/qwen_sft/venv/lib/python3.12/site-packages/peft/config.py:220: UserWarning: Unexpected keyword arguments ['lora_ga_config', 'monteclora_config', 'use_bdlora', 'velora_config'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+adapter loaded: /root/autodl-tmp/qwen_grpo/out/grpo_qwen3-4b_formal
+[10/50] instr_acc=1.000 (36s)
+[20/50] instr_acc=1.000 (89s)
+[30/50] instr_acc=1.000 (138s)
+[40/50] instr_acc=0.976 (188s)
+[50/50] instr_acc=0.962 (232s)
+
+===== RESULT qwen3-4b_grpo =====
+instruction-level: 96.2% (51/53)
+prompt-level      : 96.0% (48/50)
+EXIT 0 for qwen3-4b_grpo
+
+ALL DONE rc=0

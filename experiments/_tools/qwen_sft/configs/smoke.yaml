@@ -1,0 +1,16 @@
+model_name_or_path: /root/autodl-tmp/qwen_sft/models/Qwen3-4B
+template: qwen
+stage: sft
+finetuning_type: lora
+dataset: sft_10k
+dataset_dir: /root/autodl-tmp/qwen_sft/data
+cutoff_len: 256
+max_steps: 5
+learning_rate: 2.0e-4
+per_device_train_batch_size: 2
+bf16: true
+lora_rank: 16
+lora_alpha: 32
+lora_target: q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj
+output_dir: /root/autodl-tmp/qwen_sft/out/smoke
+logging_steps: 1
