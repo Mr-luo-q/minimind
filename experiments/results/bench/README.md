@@ -12,12 +12,16 @@
 
 > 权威版本以 `RESULTS.md` / `index.html` / `table.csv` 为准（本表是快照）。
 
+> **为什么 base 反而最好？** 归因分析见 **[`WHY_BASE_WINS.md`](./WHY_BASE_WINS.md)** ——
+> 逐题比对了三模型的得失：SFT 是"训错了目标"（用能力换文风），GRPO 是"奖励不针对目标"（没训坏也没提升）。
+
 ## 先看哪个文件
 
 | 想看什么 | 打开 |
 |---|---|
 | **一张对比表 + 每题明细（推荐）** | `index.html` —— 单文件网页，浏览器直接打开，无需服务器 |
 | 贴进报告的 Markdown 表 | `RESULTS.md` |
+| **为什么 base 反而最好（归因）** | `WHY_BASE_WINS.md` |
 | **哪一类约束最容易被违反** | `ANALYSIS.md`（约束类型通过率 + 全员都挂的题） |
 | 原始分数（表格数据） | `table.csv` |
 | 逐题原始明细（含模型回答片段） | `raw/ifeval_results_<tag>.jsonl`、`raw/gsm8k_results_<tag>.jsonl` |

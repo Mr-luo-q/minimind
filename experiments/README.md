@@ -21,6 +21,7 @@ experiments/
    └─ bench/                  ← 三个模型（base/SFT/GRPO）的 IFEval-lite + GSM8K 对比
       ├─ index.html           ← 结果总表（浏览器直接打开）
       ├─ RESULTS.md / ANALYSIS.md / table.csv
+      ├─ WHY_BASE_WINS.md     ← 归因分析：为什么 base 反而最好
       ├─ raw/                 ← 最终数据集（v3 判分口径）+ manifest.json
       ├─ batches/             ← 各次跑批的原始拉取
       └─ archive/             ← 旧判分口径的跑批（勿与最终结果混用）
@@ -54,6 +55,11 @@ experiments/
 
 结论：base 指令遵循最强；SFT 在 IFEval(−9.4pt) 与 GSM8K(−10.0pt) 上都明显退化；
 GRPO 基本追平 base。**IFEval-lite 为自实现轻量版，分数仅用于模型间横向对比，不代表官方 IFEval 榜单成绩。**
+
+**为什么 base 反而最好？** 逐题归因见 [`results/bench/WHY_BASE_WINS.md`](results/bench/WHY_BASE_WINS.md)：
+SFT 是"训错了目标"（用预训练能力换 MiniMind 文风，IFEval 单向退化 0 翻盘 / 5 翻车，GSM8K 损伤集中在"大数"）；
+GRPO 是"奖励不针对目标"（KL≈0.02 几乎没动底座，与 base 的 GSM8K 预测一致率 97/100）。
+要真正提升 GSM8K，得把奖励从"整段回答讨不讨喜"换成可验证规则（RLVR）。
 
 ## 权重说明
 
