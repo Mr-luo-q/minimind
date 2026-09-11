@@ -16,16 +16,18 @@ plt.rcParams["axes.unicode_minus"] = False
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # experiments/
 IMG = os.path.join(BASE, "img")
+# MiniMind 尺度实验的产物统一在 results/mini_sft/ 下（_tools 只放代码）
+MINI_SFT = os.path.join(BASE, "results", "mini_sft")
 os.makedirs(IMG, exist_ok=True)
 
 EXPS = [
-    ("exp1_sft_mini_ep1", "exp1 全参 SFT 1 epoch (lr=1e-5)"),
-    ("exp2_sft_mini_ep2", "exp2 全参 SFT 2 epochs (lr=1e-5)"),
-    ("exp3_lora_sft_ep1", "exp3 LoRA 1 epoch (lr=1e-4)"),
+    ("exp1_ep1", "exp1 全参 SFT 1 epoch (lr=1e-5)"),
+    ("exp2_ep2", "exp2 全参 SFT 2 epochs (lr=1e-5)"),
+    ("exp3_lora_ep1", "exp3 LoRA 1 epoch (lr=1e-4)"),
 ]
 
 def load(name):
-    path = os.path.join(BASE, name, "loss_curve.csv")
+    path = os.path.join(MINI_SFT, name, "loss_curve.csv")
     steps, losses = [], []
     with open(path, encoding="utf-8") as f:
         for row in csv.DictReader(f):
@@ -48,7 +50,7 @@ def norm01(xs, total):
 
 # ---------- Chart 1: overlaid loss curves (x = % of training) ----------
 fig, ax = plt.subplots(figsize=(10, 5.5), dpi=150)
-colors = {"exp1_sft_mini_ep1": "#1f77b4", "exp2_sft_mini_ep2": "#d62728", "exp3_lora_sft_ep1": "#2ca02c"}
+colors = {"exp1_ep1": "#1f77b4", "exp2_ep2": "#d62728", "exp3_lora_ep1": "#2ca02c"}
 for name, label in EXPS:
     steps, losses = load(name)
     total = steps[-1]
@@ -120,7 +122,7 @@ ax.set_title("初始阶段 loss 对比（前 2500 步，未经平滑）")
 ax.legend(fontsize=9)
 ax.grid(alpha=0.3)
 # annotate exp3 spike
-s3, l3 = load("exp3_lora_sft_ep1")
+s3, l3 = load("exp3_lora_ep1")
 i20 = s3.index(20)
 ax.annotate(f"LoRA 最高点 {l3[i20]:.3f} @ step 20（lr=1e-4 初始过冲）",
             xy=(20, l3[i20]), xytext=(700, 2.75),

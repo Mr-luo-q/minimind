@@ -5,10 +5,10 @@ import os
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # experiments/
 PROBES = [
-    ("exp1_sft_mini_ep1/probe_before_pretrain.txt", "SFT 前底座（pretrain_768.pth，无指令模板，直接续写）"),
-    ("exp1_sft_mini_ep1/probe_after_sft.txt", "exp1：全参 SFT 1 epoch 后"),
-    ("exp2_sft_mini_ep2/probe_after_sft_ep2.txt", "exp2：全参 SFT 2 epochs 后"),
-    ("exp3_lora_sft_ep1/probe_lora.txt", "exp3：LoRA 1 epoch 后（adapter 叠加 pretrain）"),
+    ("results/mini_sft/exp1_ep1/probe_before_pretrain.txt", "SFT 前底座（pretrain_768.pth，无指令模板，直接续写）"),
+    ("results/mini_sft/exp1_ep1/probe_after_sft.txt", "exp1：全参 SFT 1 epoch 后"),
+    ("results/mini_sft/exp2_ep2/probe_after_sft_ep2.txt", "exp2：全参 SFT 2 epochs 后"),
+    ("results/mini_sft/exp3_lora_ep1/probe_lora.txt", "exp3：LoRA 1 epoch 后（adapter 叠加 pretrain）"),
 ]
 
 HEADER = """# MiniMind 后训练实验报告
@@ -57,10 +57,10 @@ HEADER = """# MiniMind 后训练实验报告
 
 | # | 模型 | 来源 | 评测输出 |
 |---|---|---|---|
-| 1 | pretrain（SFT 前底座） | 官方权重 | `exp1_sft_mini_ep1/probe_before_pretrain.txt` |
-| 2 | exp1：全参 SFT 1 epoch | 本次训练产物 | `exp1_sft_mini_ep1/probe_after_sft.txt` |
-| 3 | exp2：全参 SFT 2 epochs | 本次训练产物 | `exp2_sft_mini_ep2/probe_after_sft_ep2.txt` |
-| 4 | exp3：LoRA 1 epoch | 本次训练产物（adapter 叠加在 pretrain 上） | `exp3_lora_sft_ep1/probe_lora.txt` |
+| 1 | pretrain（SFT 前底座） | 官方权重 | `results/mini_sft/exp1_ep1/probe_before_pretrain.txt` |
+| 2 | exp1：全参 SFT 1 epoch | 本次训练产物 | `results/mini_sft/exp1_ep1/probe_after_sft.txt` |
+| 3 | exp2：全参 SFT 2 epochs | 本次训练产物 | `results/mini_sft/exp2_ep2/probe_after_sft_ep2.txt` |
+| 4 | exp3：LoRA 1 epoch | 本次训练产物（adapter 叠加在 pretrain 上） | `results/mini_sft/exp3_lora_ep1/probe_lora.txt` |
 
 每轮训练均记录了完整日志（`train.log`，全参 SFT 每 100 步一条、LoRA 每 10 步一条）与 loss 序列（`loss_curve.csv`）。
 
@@ -201,13 +201,22 @@ python eval_probe.py --weight pretrain --lora lora_sft_ep1   # LoRA 模型
 
 ```
 experiments/
+├── README.md                 # 索引
 ├── 后训练实验报告.md          # 本文档
 ├── img/                      # 图表（loss_curves / loss_stats / trainable_params / early_loss）
-├── README.md                 # 汇总索引（自动生成）
-├── exp1_sft_mini_ep1/        # train.log + loss_curve.csv + probe_before/after + README
-├── exp2_sft_mini_ep2/        # train.log + loss_curve.csv + probe_after_sft_ep2 + README
-├── exp3_lora_sft_ep1/        # train.log + loss_curve.csv + probe_lora + README
-└── _tools/                   # make_charts.py（图表）、assemble_report.py（本文档生成）
+├── _tools/                   # 只有代码与配置
+│   ├── make_charts.py        # 生成 img/ 下的图表
+│   ├── assemble_report.py    # 生成本文档
+│   ├── qwen_sft/             # LLaMA-Factory SFT（configs / data / 脚本）
+│   └── qwen_grpo/            # TRL GRPO 脚本 + bench/ 评测工具
+└── results/                  # 所有实验产物
+    ├── mini_sft/             # 本节内容：exp1_ep1 / exp2_ep2 / exp3_lora_ep1
+    │   ├── exp1_ep1/         # train.log + loss_curve.csv + probe_before/after + README
+    │   ├── exp2_ep2/         # train.log + loss_curve.csv + probe_after_sft_ep2 + README
+    │   └── exp3_lora_ep1/    # train.log + loss_curve.csv + probe_lora + README
+    ├── qwen_sft/             # Qwen SFT 产物
+    ├── qwen_grpo/            # Qwen GRPO 产物
+    └── bench/                # base/SFT/GRPO 的 IFEval-lite + GSM8K 对比
 ```
 
 ### 9.3 模型权重（不入库，保存在实例数据盘）

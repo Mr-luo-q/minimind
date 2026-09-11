@@ -58,7 +58,7 @@ MODELS=( "qwen3-4b_base|" "qwen3-4b_sft|$ADAPTER_SFT" "qwen3-4b_grpo|$ADAPTER_GR
 
 ## 2. 输出产物
 
-结果默认写到 `experiments/qwen_grpo_results/bench/`：
+结果默认写到 `experiments/results/bench/`：
 
 | 文件 | 内容 |
 |---|---|

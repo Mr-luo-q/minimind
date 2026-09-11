@@ -3,9 +3,9 @@
 # 一键评测：base vs SFT vs GRPO（IFEval-lite + GSM8K）
 #   - 在【实例】上执行，不是本地
 #   - 结果：
-#       experiments/qwen_grpo_results/bench/ifeval_results.csv   (+ 每模型 jsonl 明细)
-#       experiments/qwen_grpo_results/bench/gsm8k_results.csv    (+ 每模型 jsonl 明细)
-#       experiments/qwen_grpo_results/bench/bench_summary.md     (对比表，直接贴进报告)
+#       experiments/results/bench/ifeval_results.csv   (+ 每模型 jsonl 明细)
+#       experiments/results/bench/gsm8k_results.csv    (+ 每模型 jsonl 明细)
+#       experiments/results/bench/bench_summary.md     (对比表，直接贴进报告)
 #   - 评测脚本已随本仓库同步到实例，不再依赖 /root/autodl-tmp 下的副本
 #
 # 用法:
@@ -51,8 +51,8 @@ ADAPTER_GRPO=$GRPO/out/grpo_qwen3-4b_formal
 # 评测脚本位置: 本仓库 experiments/_tools/qwen_grpo/bench
 # 允许从任意 cwd 调用本脚本
 BENCH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# 结果落到仓库里的实验记录目录（保持 experiments/qwen_grpo_results/ 的归档惯例）
-OUTDIR="${OUTDIR:-$(cd "$BENCH/../../.." && pwd)/qwen_grpo_results/bench}"
+# 结果落到实验结果目录 experiments/results/bench/
+OUTDIR="${OUTDIR:-$(cd "$BENCH/../../.." && pwd)/results/bench}"
 mkdir -p "$OUTDIR"
 # ---------------- 路径配置结束 ----------------
 
