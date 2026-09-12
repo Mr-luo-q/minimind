@@ -16,6 +16,7 @@ experiments/
 │  ├─ qwen_sft/               ← LLaMA-Factory SFT（configs / data / 转换与评测脚本）
 │  └─ qwen_grpo/              ← TRL GRPO 训练脚本 + bench/ 评测工具
 └─ results/                   ← 所有实验产物
+   ├─ qwen_4b_TRAINING_LOG.md ← **Qwen3-4B 训练日志（带图，自动生成）**
    ├─ mini_sft/               ← MiniMind 64M：exp1(全参1轮) / exp2(全参2轮) / exp3(LoRA)
    ├─ qwen_sft/               ← Qwen SFT：loss 曲线、probe 回答、训练日志、summary
    ├─ qwen_grpo/              ← Qwen GRPO：训练日志、显存采样、probe、边界扫描结果
