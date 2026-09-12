@@ -2,6 +2,9 @@
 
 本目录是后训练实验的总入口：**`_tools/` 只有代码与配置，所有产物都在 `results/`**。
 
+> 📄 **文档已单独整理成独立仓库**：[`Mr-luo-q/minimind-posttrain-docs`](https://github.com/Mr-luo-q/minimind-posttrain-docs)
+> —— 只放文档与图表，便于单独阅读/分享；代码与原始数据仍在本仓库 `experiments/`。
+
 ## 目录结构
 
 ```

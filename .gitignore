@@ -4,3 +4,5 @@ __pycache__/
 out
 website/
 docs-minimind/
+# 独立文档仓库的本地构建目录（内容已推到 Mr-luo-q/minimind-posttrain-docs）
+experiments/_docs_repo/
